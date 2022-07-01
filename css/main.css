@@ -28,9 +28,8 @@ side > div {
 }
 
 side {
-    width:20vmin;
-    height: 30%;
-    background-color: bisque;
+    width:12vmin;
+    height: 28vmin;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1r;
@@ -38,4 +37,41 @@ side {
 
 .submit {
     grid-column: span 2;
+    height: 5vmin;
 }
+
+.selector {
+    border-radius: 50%; 
+    background-color: green;
+}
+
+#red {
+    background: radial-gradient(circle at 65% 15%, white 1px, red 3%, rgb(113, 24, 24) 60%, red 100%);
+}
+#green {
+    background: radial-gradient(circle at 65% 15%, white 1px, green 3%, rgb(8, 59, 8) 60%, green 100%);
+}
+#blue {
+    background: radial-gradient(circle at 65% 15%, white 1px, aqua 3%, darkblue 60%, aqua 100%);
+}  
+#yellow {
+    background: radial-gradient(circle at 65% 15%, white 1px, yellow 3%, rgb(118, 118, 27) 60%, rgb(255, 255, 0) 100%);
+}
+#brown {
+    background: radial-gradient(circle at 65% 15%, white 1px, rgb(129, 78, 39) 3%, rgb(62, 40, 22) 60%, rgb(138, 84, 43) 100%);
+}
+#orange {
+    background: radial-gradient(circle at 65% 15%, white 1px, orange 3%, brown 60%, orange 100%);
+}
+#black {
+    background: radial-gradient(circle at 65% 15%, white 1px, rgb(82, 82, 82) 3%, rgb(0, 0, 0) 60%, rgb(45, 44, 44) 100%);
+}
+#white {
+    background: radial-gradient(circle at 65% 15%, white 1px, white 3%, rgb(146, 146, 146) 60%, white 100%);
+}
+
+
+
+
+
+
