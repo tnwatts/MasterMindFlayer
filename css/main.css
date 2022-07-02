@@ -54,7 +54,7 @@ main > div {
 }
 
 side > div {
-    margin: 3px;
+    margin: 4px;
 }
 
 side {
@@ -62,7 +62,7 @@ side {
     background-color: rgba(114, 38, 38, 0.15);
     border-radius: 20%;
     margin: 51vmin 0 0 3vmin;
-    width:12vmin;
+    width:13vmin;
     height: 28vmin;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -86,19 +86,19 @@ side {
 }
 
 #red {
-    background: radial-gradient(circle at 65% 15%, white 1px, red 3%, rgb(113, 24, 24) 60%, red 100%);
+    background: radial-gradient(circle at 65% 15%, rgb(234, 228, 228) 1px, rgba(255, 0, 0, 0.777) 3%, rgb(113, 24, 24) 60%, rgba(255, 0, 0, 0.789) 100%);
     box-shadow: 3px 2px 5px black;
 }
 #green {
-    background: radial-gradient(circle at 65% 15%, white 1px, green 3%, rgb(8, 59, 8) 60%, green 100%);
+    background: radial-gradient(circle at 65% 15%, rgb(211, 198, 198) 1px, green 3%, rgb(8, 59, 8) 60%, green 100%);
     box-shadow: 3px 2px 5px black;
 }
 #blue {
-    background: radial-gradient(circle at 65% 15%, white 1px, aqua 3%, darkblue 60%, aqua 100%);
+    background: radial-gradient(circle at 65% 15%, rgb(226, 232, 235) 1px, rgba(1, 202, 237, 0.854) 3%, darkblue 60%, rgba(1, 202, 237, 0.854) 100%);
     box-shadow: 3px 2px 5px black;
 }  
 #yellow {
-    background: radial-gradient(circle at 65% 15%, white 2px, rgb(255, 255, 101) 3%, rgb(154, 154, 0) 60%, rgba(254, 254, 69, 0.903) 100%);
+    background: radial-gradient(circle at 65% 15%, rgb(230, 230, 221) 2px, rgba(239, 239, 65, 0.819) 3%, rgb(127, 127, 2) 60%, rgba(239, 239, 65, 0.819) 100%);
     box-shadow: 3px 2px 5px black;
 }
 #brown {
@@ -106,11 +106,11 @@ side {
     box-shadow: 3px 2px 5px black;
 }
 #orange {
-    background: radial-gradient(circle at 65% 15%, white 1px, orange 3%, brown 60%, orange 100%);
+    background: radial-gradient(circle at 65% 15%, white 1px, rgba(211, 137, 2, 0.816) 3%, brown 60%, rgba(211, 137, 2, 0.816) 100%);
     box-shadow: 3px 2px 5px black;
 }
 #black {
-    background: radial-gradient(circle at 65% 15%, rgb(236, 236, 236) 1px, rgb(82, 82, 82) 3%, rgb(0, 0, 0) 60%, rgb(220, 200, 200) 100%);
+    background: radial-gradient(circle at 65% 15%, rgb(220, 211, 211) 1px, rgb(82, 82, 82) 3%, rgb(0, 0, 0) 60%, rgb(220, 200, 200) 100%);
     box-shadow: 3px 2px 5px black;
 }
 #white {
@@ -135,7 +135,7 @@ peg {
 }
 
 .empty{
-    background: radial-gradient(closest-side, #615e5e, #262a23, #1d1a18);
+    background: radial-gradient(closest-side, #615e5e, #343930, #1d1a18);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     border-radius: 90%;
     margin: 1vmin;

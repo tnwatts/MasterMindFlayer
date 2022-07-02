@@ -12,7 +12,7 @@
 ];
 
 /*----- app's state (variables) -----*/
-let gameRoundsLeft; //10 rounds means 10 guesses
+let roundsLeft; //10 rounds means 10 guesses
 let gameStatus; //game in session = null, victory = 'W', loser = 'L'
 let guessSlot; //array to hold the current play group
 let currentGuess; //array that holds the current guesses
@@ -28,11 +28,11 @@ init();
 
 function init() {
     gameStatus = null;
-    gameRoundsLeft = 9;
+    roundsLeft = 9;
 
     currentGuess = [];
     loadGuessEls();
-    layoutDivs();
+    layoutPegs();
     // selectorEls.forEach(function(selecorEl, idx){
 
     // })
@@ -43,6 +43,13 @@ function init() {
 
 function render() {
     //assign current guesses to elements
+    currentGuess.forEach(function(el, idx){
+        guessEls[roundsLeft].children[idx].setAttribute('id',`${el}`);
+        console.log(el);
+    })
+    // guessEls[roundsLeft-1].children.forEach(function(El){
+    //     console.log(El);
+    // })
     //guessSlot[currentGuess.length-1].setAttribute('id', `${currentGuess}`);
 }
 
@@ -50,12 +57,13 @@ function handlePegSelector(evt){
     //update the current guesses array with the peg selected
     if (evt.target.classList.value === 'selector'){
         if (currentGuess.length >= 4) {
-            alert('guesses full');
+            alert('guesses full'); // need to replace later
             return;
         }
         currentGuess.push(evt.target.id);
         
         console.log(evt.target.id);
+        render();
     }
 }
 
@@ -65,9 +73,9 @@ function handlePegRemover(){
 }
 
 function loadGuessEls(){
-    guessSlot = guessEls[gameRoundsLeft].children;
+    guessSlot = guessEls[roundsLeft].children;
 }
-function layoutDivs(){
+function layoutPegs(){
     let allEls = [...guessEls, ...clueEls];
     allEls.forEach(function(El){
         for(i = 0; i <4; i++) {
@@ -76,6 +84,6 @@ function layoutDivs(){
             El.appendChild(peg);
         }
     })
-    console.log(allEls);
+    //console.log(allEls);
 }
 
