@@ -5,31 +5,61 @@
 
 body {
     height: 100vh;
+    margin:0;
+    background: #30947b; 
+}
+body2 {
+    height: 110%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: 
+    radial-gradient(
+      circle at top left,
+      rgba(145, 65, 65, 0.5), 
+      transparent 70vmin
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(114, 38, 38, 0.5), 
+      transparent 90vmin
+    ),
+    radial-gradient(
+      at bottom left,
+      rgba(213, 185, 61, 0.5), 
+      transparent 100vmin
+    ),
+    radial-gradient(
+      at bottom right,
+      rgba(255, 100, 100, 0.5), 
+      transparent 100vmin
+    );
 }
 
 main {
-    height: 90%;
+    margin-top: -10vmin;
+    height: 82%;
     width: 40vmin;
     display: grid;
-    background-color: rgb(121, 66, 31);
     grid-template-columns: 1fr  3fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    
 }
 
 main > div {
-    border: 5px solid black;
+    background-color: rgb(121, 66, 31);
+    border: 2px solid black;
+    border-radius: 10%;
 }
 
 side > div {
-    border: 3px solid black;
+    border: 1px solid black;
 }
 
 side {
+    margin: 56vmin 0 0 1vmin;
     width:12vmin;
-    height: 28vmin;
+    height: 32vmin;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1r;
@@ -47,31 +77,48 @@ side {
 
 #red {
     background: radial-gradient(circle at 65% 15%, white 1px, red 3%, rgb(113, 24, 24) 60%, red 100%);
+    box-shadow: 3px 2px 5px black;
 }
 #green {
     background: radial-gradient(circle at 65% 15%, white 1px, green 3%, rgb(8, 59, 8) 60%, green 100%);
+    box-shadow: 3px 2px 5px black;
 }
 #blue {
     background: radial-gradient(circle at 65% 15%, white 1px, aqua 3%, darkblue 60%, aqua 100%);
+    box-shadow: 3px 2px 5px black;
 }  
 #yellow {
-    background: radial-gradient(circle at 65% 15%, white 1px, yellow 3%, rgb(118, 118, 27) 60%, rgb(255, 255, 0) 100%);
+    background: radial-gradient(circle at 65% 15%, white 2px, rgb(255, 255, 101) 3%, rgb(154, 154, 0) 60%, rgba(254, 254, 69, 0.903) 100%);
+    box-shadow: 3px 2px 5px black;
 }
 #brown {
     background: radial-gradient(circle at 65% 15%, white 1px, rgb(129, 78, 39) 3%, rgb(62, 40, 22) 60%, rgb(138, 84, 43) 100%);
+    box-shadow: 3px 2px 5px black;
 }
 #orange {
     background: radial-gradient(circle at 65% 15%, white 1px, orange 3%, brown 60%, orange 100%);
+    box-shadow: 3px 2px 5px black;
 }
 #black {
-    background: radial-gradient(circle at 65% 15%, white 1px, rgb(82, 82, 82) 3%, rgb(0, 0, 0) 60%, rgb(45, 44, 44) 100%);
+    background: radial-gradient(circle at 65% 15%, rgb(236, 236, 236) 1px, rgb(82, 82, 82) 3%, rgb(0, 0, 0) 60%, rgb(220, 200, 200) 100%);
+    box-shadow: 3px 2px 5px black;
 }
 #white {
-    background: radial-gradient(circle at 65% 15%, white 1px, white 3%, rgb(146, 146, 146) 60%, white 100%);
+    background: radial-gradient(circle at 65% 15%, white 4px, white 3%, rgb(146, 146, 146) 60%, white 100%);
+    box-shadow: 3px 2px 5px black;
 }
 
-
-
-
-
+#guess{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+#guess > div {
+    background: radial-gradient(closest-side, #000000, #262a23, #514b45);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 90%;
+    margin: 1vmin;
+}
+.new-game{
+    grid-column: span 2;
+}
 
