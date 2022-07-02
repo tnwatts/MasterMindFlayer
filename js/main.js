@@ -12,7 +12,7 @@
 ];
 
 /*----- app's state (variables) -----*/
-let gameRound; //10 rounds means 10 guesses
+let gameRoundsLeft; //10 rounds means 10 guesses
 let gameStatus; //game in session = null, victory = 'W', loser = 'L'
 let guessSlot; //array to hold the current 4 guess's
 /*----- cached element references -----*/
@@ -25,7 +25,7 @@ init();
 
 function init() {
     gameStatus = null;
-    gameRound = 0;
+    gameRoundsLeft = 9;
     loadGuessEls();
     // selectorEls.forEach(function(selecorEl, idx){
 
@@ -42,12 +42,13 @@ function render() {
 
 function handlePegSelector(evt){
     if (evt.target.classList.value === 'selector'){
-        console.log(evt.target.classList);
+        guessSlot[0].setAttribute.id = evt.target.id;
+        console.log(evt.target.id);
     }
 
-    gameRound++;
+    
 }
 
 function loadGuessEls(){
-
+    guessSlot = guessEls[gameRoundsLeft].children;
 }

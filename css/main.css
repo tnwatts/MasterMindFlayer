@@ -37,17 +37,18 @@ body2 {
 }
 
 main {
-    margin-top: -10vmin;
-    height: 82%;
+    margin-top: 0vmin;
+    height: 70%;
     width: 40vmin;
     display: grid;
     grid-template-columns: 1fr  3fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    
+    background-color: #483f3f;
+    box-shadow: 0.6vmin 0.6vmin 1vmin 1vmin black;
 }
 
 main > div {
-    background-color: rgb(121, 66, 31);
+    background: linear-gradient(0.24turn, rgb(87, 54, 54), rgb(73, 110, 73),rgb(120, 120, 72));
     border: 2px solid black;
     border-radius: 10%;
 }
@@ -57,7 +58,7 @@ side > div {
 }
 
 side {
-    margin: 56vmin 0 0 1vmin;
+    margin: 56vmin 0 0 3vmin;
     width:12vmin;
     height: 32vmin;
     display: grid;
@@ -109,8 +110,14 @@ side {
 }
 
 #guess{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#guess > div {
+    border-radius: 50%;
+    width: 5vmin;
+    height: 4.8vmin;
 }
 #empty{
     background: radial-gradient(closest-side, #000000, #262a23, #514b45);
@@ -120,5 +127,30 @@ side {
 }
 .new-game{
     grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    padding: 1vmin 1vmin;
+    font-size: 2vmin;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background: linear-gradient(0.25turn, #4D936F, #745125, #848172);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0.4vmin 0.4vmin 0.4vmin black;
+  }
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+  transform: translateX(2px);
 }
 
