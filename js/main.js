@@ -18,6 +18,7 @@ let currentGuess; //array that holds the current player guesses data
 //let guessCount; //int to keep track of how many guess there are
 let masterCode; // array with the sequence the player has to guess
 let difficulty; //4 for standard mode, 5 for MINDFLAYER
+let clues; //array that holds the guess feed back clues
 /*----- cached element references -----*/
 const selectorEls = document.querySelectorAll('.selector');
 const guessEls = document.querySelectorAll('.peg-cell-guess');
@@ -27,7 +28,7 @@ const masterEls = document.getElementById('master-cell');
 document.querySelector('side').addEventListener('click', handlePegSelector);
 //document.querySelector('.ng-button').addEventListener('click', init);
 document.querySelector('.rmv-button').addEventListener('click', removePeg);
-//document.querySelector('.sub-button').addEventListener('click', submitGuess);
+document.querySelector('.sub-button').addEventListener('click', submitGuess);
 
 /*----- functions -----*/
 init();
@@ -38,7 +39,7 @@ function init() {
     roundsLeft = 9;
     currentGuess = [];
     masterCode = Array(difficulty).fill();
-    console.log(masterCode);
+    // console.log(masterCode);
     masterCode.forEach((string, idx) => {
         masterCode[idx] = pegs[Math.floor(Math.random()*8)];
     })
@@ -70,7 +71,7 @@ function handlePegSelector(evt){
         }
         currentGuess.push(evt.target.id);
         
-        console.log(evt.target.id);
+        // console.log(evt.target.id);
         render();
     }
 }
@@ -97,17 +98,23 @@ function layoutPegs(){
         peg.setAttribute('class' , 'mystery');
         peg.textContent = '?';
         masterEls.appendChild(peg);
-        console.log(masterEls);
+        //console.log(masterEls);
     }
 }
 
 function submitGuess(){
-    if (guessCount.length < difficulty) alert('you have more pegs to fill');
-    let correctColors = 0;
-    let truelyCorrect = 0;
+    if (currentGuess.length < difficulty) alert('you have more pegs to fill');
+    let whitePegCount = 0;
+    let blackPegCount = 0;
+    currentGuess.forEach(function(peg, idx){
+        if(peg === masterCode[idx]){blackPegCount++}
+            else if(masterCode.includes(peg)){whitePegCount++}
+    });
+    clues = Array(4).fill('black', 0 , blackPegCount);
+    clues.fill('white' , blackPegCount , whitePegCount);
+    render();
     
-    //check guess against masterMinds answer
-    //create array with white/black peg combo for the clue feedback
+    
     //if all pegs in clue array are black, update gameStatus to victory
       //else if roundsLeft = 0, update gameStatus to Loss
       //else decrement roundsLeft and render 
@@ -116,7 +123,6 @@ function submitGuess(){
   function removePeg(){
     if (currentGuess.length === 0) alert('not enough pegs'); //need change this
     currentGuess.pop();
-    
     render();
   }
   

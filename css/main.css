@@ -152,9 +152,25 @@ peg {
     align-items: center;
 }
 
-.ng-button , .sub-button , .rmv-button {
+.ng-button , .sub-button {
     
     width: 15vmin;
+    padding: 1vmin 1vmin;
+    font-size: 2vmin;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background: linear-gradient(0.25turn, #305c45ba, #745025ac, #7d775c);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(0, 0, 0, 0.742);
+  }
+
+/*have to seperate this buttons css because it was behaving 
+weirdly in firefox and needs its own settings*/
+  .rmv-button {
+    width: 10vmin;
     padding: 1vmin 1vmin;
     font-size: 2vmin;
     text-align: center;
