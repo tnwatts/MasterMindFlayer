@@ -37,11 +37,11 @@ body2 {
 }
 
 main {
-    margin-top: 0vmin;
-    height: 75%;
+    margin-top: -10vmin;
+    height: 84%;
     width: 36vmin;
     display: grid;
-    grid-template-columns: 1fr  3fr;
+    grid-template-columns: 1fr  2.7fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     background-color: #483f3f;
     box-shadow: 0.6vmin 0.6vmin 1vmin 1vmin black;
@@ -76,10 +76,10 @@ side {
     justify-content: center;
     align-items: center;
 }
-.empty {
+/* .empty {
     background: url("https://w7.pngwing.com/pngs/737/396/png-transparent-mastermind-how-to-think-like-sherlock-holmes-221b-baker-street-his-last-bow-book-book-microphone-monochrome-sticker-thumbnail.png");
     background-size: cover;
-}
+} */
 .selector {
     border-radius: 50%; 
     background-color: green;
@@ -117,20 +117,26 @@ side {
     background: radial-gradient(circle at 65% 15%, white 4px, white 3%, rgb(146, 146, 146) 60%, white 100%);
     box-shadow: 3px 2px 5px black;
 }
-
-#guess{
+.peg-cell-clue{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: -5vmin 0 0 0;
+}
+.peg-cell-guess{
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-#guess > div {
+peg {
     border-radius: 50%;
-    width: 5vmin;
-    height: 4.8vmin;
+    width: 50%;
+    height: 56%;
 }
-#empty{
-    background: radial-gradient(closest-side, #000000, #262a23, #514b45);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+.empty{
+    background: radial-gradient(closest-side, #615e5e, #262a23, #1d1a18);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     border-radius: 90%;
     margin: 1vmin;
 }
