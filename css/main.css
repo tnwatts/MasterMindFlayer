@@ -60,7 +60,6 @@ side > div {
 }
 
 side {
-
     background: linear-gradient(to top right, #4C6657, #8680729f);
     box-shadow: 0.4vmin 0.4vmin 0.4vmin 0.4vmin rgba(10, 49, 53, 0.759);
     border-radius: 20%;
@@ -167,7 +166,7 @@ peg {
     box-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(0, 0, 0, 0.742);
   }
 
-/*have to seperate this buttons css because it was behaving 
+/*have to seperate this button's css because it was behaving 
 weirdly in firefox and needs its own settings*/
   .rmv-button {
     width: 10vmin;
