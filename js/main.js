@@ -49,7 +49,7 @@ function init() {
 }
 
 function render() {
-    //assign a color id for each guessEl and remove and id's that are no longer supposed to be there
+    //assign a color id for each guessEl and remove any id's that are no longer supposed to be there
     for(i=0; i<difficulty ; i++){
         if (i<currentGuess.length){
             guessEls[roundsLeft].children[i].setAttribute('id', `${currentGuess[i]}`);
@@ -58,12 +58,7 @@ function render() {
             guessEls[roundsLeft].children[i].setAttribute('id','');
         }
     }
-
-    
-    // guessEls[roundsLeft-1].children.forEach(function(El){
-    //     console.log(El);
-    // })
-    //guessSlot[currentGuess.length-1].setAttribute('id', `${currentGuess}`);
+    //
 }
 
 function handlePegSelector(evt){
@@ -97,8 +92,13 @@ function layoutPegs(){
             El.appendChild(peg);
         }
     })
-    //layout masterEls
-    //console.log(allEls);
+    for(i=0; i<difficulty; i++) {
+        let peg = document.createElement('peg');
+        peg.setAttribute('class' , 'mystery');
+        peg.textContent = '?';
+        masterEls.appendChild(peg);
+        console.log(masterEls);
+    }
 }
 
 function submitGuess(){

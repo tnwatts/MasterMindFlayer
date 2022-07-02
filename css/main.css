@@ -8,6 +8,7 @@ body {
     margin:0;
     background: #30947b; 
 }
+/*body sets a uniform color and body2 overlays radial gradients in the corner for a spiffier look*/
 body2 {
     height: 110%;
     display: flex;
@@ -16,17 +17,17 @@ body2 {
     background: 
     radial-gradient(
       circle at top left,
-      rgba(145, 65, 65, 0.5), 
+      rgba(145, 65, 65, 0.617), 
       transparent 70vmin
     ),
     radial-gradient(
       circle at top right,
-      rgba(114, 38, 38, 0.5), 
-      transparent 90vmin
+      rgba(21, 30, 99, 0.5), 
+      transparent 70vmin
     ),
     radial-gradient(
       at bottom left,
-      rgba(213, 185, 61, 0.5), 
+      rgba(229, 198, 62, 0.644), 
       transparent 100vmin
     ),
     radial-gradient(
@@ -90,43 +91,44 @@ side {
 
 #red {
     background: radial-gradient(circle at 65% 15%, rgb(234, 228, 228) 1px, rgba(255, 0, 0, 0.777) 3%, rgb(113, 24, 24) 60%, rgba(255, 0, 0, 0.789) 100%);
-    box-shadow: 3px 2px 5px black;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
 }
 #green {
     background: radial-gradient(circle at 65% 15%, rgb(211, 198, 198) 1px, green 3%, rgb(8, 59, 8) 60%, green 100%);
-    box-shadow: 3px 2px 5px black;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
 }
 #blue {
     background: radial-gradient(circle at 65% 15%, rgb(226, 232, 235) 1px, rgba(1, 202, 237, 0.854) 3%, darkblue 60%, rgba(1, 202, 237, 0.854) 100%);
-    box-shadow: 3px 2px 5px black;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
 }  
 #yellow {
     background: radial-gradient(circle at 65% 15%, rgb(230, 230, 221) 2px, rgba(239, 239, 65, 0.819) 3%, rgb(127, 127, 2) 60%, rgba(239, 239, 65, 0.819) 100%);
-    box-shadow: 3px 2px 5px black;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
 }
 #brown {
     background: radial-gradient(circle at 65% 15%, white 1px, rgb(129, 78, 39) 3%, rgb(62, 40, 22) 60%, rgb(138, 84, 43) 100%);
-    box-shadow: 3px 2px 5px black;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
 }
 #orange {
     background: radial-gradient(circle at 65% 15%, white 1px, rgba(211, 137, 2, 0.816) 3%, brown 60%, rgba(211, 137, 2, 0.816) 100%);
-    box-shadow: 3px 2px 5px black;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
 }
 #black {
     background: radial-gradient(circle at 65% 15%, rgb(220, 211, 211) 1px, rgb(82, 82, 82) 3%, rgb(0, 0, 0) 60%, rgb(220, 200, 200) 100%);
-    box-shadow: 3px 2px 5px black;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
 }
 #white {
     background: radial-gradient(circle at 65% 15%, white 4px, white 3%, rgb(146, 146, 146) 60%, white 100%);
-    box-shadow: 3px 2px 5px black;
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
 }
+
 .peg-cell-clue{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     padding: -5vmin 0 0 0;
 }
-.peg-cell-guess{
+.peg-cell-guess , #master-cell {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -139,7 +141,7 @@ peg {
 
 .empty{
     background: radial-gradient(closest-side, #615e5e, #343930, #1d1a18);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
     border-radius: 90%;
     margin: 1vmin;
 }
@@ -151,6 +153,7 @@ peg {
 }
 
 .ng-button , .sub-button , .rmv-button {
+    
     width: 15vmin;
     padding: 1vmin 1vmin;
     font-size: 2vmin;
@@ -161,7 +164,7 @@ peg {
     background: linear-gradient(0.25turn, #305c45ba, #745025ac, #7d775c);
     border: none;
     border-radius: 15px;
-    box-shadow: 0.4vmin 0.4vmin 0.4vmin black;
+    box-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(0, 0, 0, 0.742);
   }
 
   .ng-button:hover , .sub-button:hover , .rmv-button:hover {background-color: #3e8e41}
@@ -171,5 +174,23 @@ peg {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
   transform: translateX(2px);
+}
+.mystery{
+    
+        /* display: block; */
+        background: radial-gradient(circle at 65% 15%, rgba(193, 200, 208, 0.851) 1px, rgba(22, 95, 100, 0.839) 3%, rgba(112, 38, 38, 0.921) 60%, rgba(227, 207, 238, 0.669) 100%);
+        box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
+        /* border-radius: 90%; */
+        margin: 1vmin;
+        color: #fff;
+        border-radius: 50%;
+        /* width: 40px; */
+        /* height: 40px; */
+        line-height: 4vmin;
+        text-align: center;
+        font-size: 3.1vmin;
+        font-family: Verdana;
+        text-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(22, 12, 12, 0.857);
+    
 }
 
