@@ -1,6 +1,5 @@
 /*----- constants -----*/
  const pegs = [
-    'empty',
     'red',
     'green',
     'blue',
@@ -12,41 +11,55 @@
 ];
 
 /*----- app's state (variables) -----*/
-let roundsLeft; //10 rounds means 10 guesses
 let gameStatus; //game in session = null, victory = 'W', loser = 'L'
-let guessSlot; //array to hold the current play group
-let currentGuess; //array that holds the current guesses
-let guessCount; //int to keep track of how many guess there are
+let roundsLeft; //10 rounds means 10 guesses
+let guessSlot; //array to hold the current guess slots group
+let currentGuess; //array that holds the current player guesses data
+//let guessCount; //int to keep track of how many guess there are
+let masterCode; // array with the sequence the player has to guess
+let difficulty; //4 for standard mode, 5 for MINDFLAYER
 /*----- cached element references -----*/
 const selectorEls = document.querySelectorAll('.selector');
 const guessEls = document.querySelectorAll('.peg-cell-guess');
 const clueEls = document.querySelectorAll('.peg-cell-clue');
+const masterEls = document.getElementById('master-cell');
 /*----- event listeners -----*/
 document.querySelector('side').addEventListener('click', handlePegSelector);
+//document.querySelector('.ng-button').addEventListener('click', init);
+document.querySelector('.rmv-button').addEventListener('click', removePeg);
+//document.querySelector('.sub-button').addEventListener('click', submitGuess);
+
 /*----- functions -----*/
 init();
 
 function init() {
     gameStatus = null;
+    difficulty = 4;
     roundsLeft = 9;
-
     currentGuess = [];
+    masterCode = Array(difficulty).fill();
+    console.log(masterCode);
+    masterCode.forEach((string, idx) => {
+        masterCode[idx] = pegs[Math.floor(Math.random()*8)];
+    })
+
     loadGuessEls();
     layoutPegs();
-    // selectorEls.forEach(function(selecorEl, idx){
-
-    // })
-        // selectorEl.backgroundColor = pegs[idx]
-    // selectorEls[0].style.background = pegs[1];
     render();
 }
 
 function render() {
-    //assign current guesses to elements
-    currentGuess.forEach(function(el, idx){
-        guessEls[roundsLeft].children[idx].setAttribute('id',`${el}`);
-        console.log(el);
-    })
+    //assign a color id for each guessEl and remove and id's that are no longer supposed to be there
+    for(i=0; i<difficulty ; i++){
+        if (i<currentGuess.length){
+            guessEls[roundsLeft].children[i].setAttribute('id', `${currentGuess[i]}`);
+        }
+        else {
+            guessEls[roundsLeft].children[i].setAttribute('id','');
+        }
+    }
+
+    
     // guessEls[roundsLeft-1].children.forEach(function(El){
     //     console.log(El);
     // })
@@ -56,7 +69,7 @@ function render() {
 function handlePegSelector(evt){
     //update the current guesses array with the peg selected
     if (evt.target.classList.value === 'selector'){
-        if (currentGuess.length >= 4) {
+        if (currentGuess.length >= difficulty) {
             alert('guesses full'); // need to replace later
             return;
         }
@@ -78,12 +91,32 @@ function loadGuessEls(){
 function layoutPegs(){
     let allEls = [...guessEls, ...clueEls];
     allEls.forEach(function(El){
-        for(i = 0; i <4; i++) {
+        for(i = 0; i <difficulty; i++) {
             let peg = document.createElement('peg');
             peg.setAttribute('class','empty');
             El.appendChild(peg);
         }
     })
+    //layout masterEls
     //console.log(allEls);
 }
 
+function submitGuess(){
+    if (guessCount.length < difficulty) alert('you have more pegs to fill');
+    let correctColors = 0;
+    let truelyCorrect = 0;
+    
+    //check guess against masterMinds answer
+    //create array with white/black peg combo for the clue feedback
+    //if all pegs in clue array are black, update gameStatus to victory
+      //else if roundsLeft = 0, update gameStatus to Loss
+      //else decrement roundsLeft and render 
+  }
+
+  function removePeg(){
+    if (currentGuess.length === 0) alert('not enough pegs'); //need change this
+    currentGuess.pop();
+    
+    render();
+  }
+  

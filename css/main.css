@@ -39,16 +39,17 @@ body2 {
 main {
     margin-top: -10vmin;
     height: 84%;
-    width: 36vmin;
+    width: 34vmin;
     display: grid;
     grid-template-columns: 1fr  2.7fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    background-color: #483f3f;
-    box-shadow: 0.6vmin 0.6vmin 1vmin 1vmin black;
+    background-color: #05100da4;
+    box-shadow: 0.6vmin 0.6vmin 1vmin 0.5vmin rgba(21, 37, 38, 0.816);
+    border-radius: 5%;
 }
 
 main > div {
-    background: linear-gradient(0.24turn,#45331c, #517767,#8A7F71);
+    background: linear-gradient(0.24turn,#45331ce0, #517767,#8A7F71);
     border: 2px solid black;
     border-radius: 10%;
 }
@@ -59,14 +60,16 @@ side > div {
 
 side {
 
-    background-color: rgba(114, 38, 38, 0.15);
+    background: linear-gradient(to top right, #4C6657, #8680729f);
+    box-shadow: 0.4vmin 0.4vmin 0.4vmin 0.4vmin rgba(10, 49, 53, 0.759);
     border-radius: 20%;
     margin: 51vmin 0 0 3vmin;
-    width:13vmin;
+    width:14vmin;
     height: 28vmin;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    padding: 0.4vmin 1.2vmin;
 }
 
 .submit {
@@ -143,11 +146,11 @@ peg {
 .new-game{
     grid-column: span 2;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
-.button {
+.ng-button , .sub-button , .rmv-button {
     width: 15vmin;
     padding: 1vmin 1vmin;
     font-size: 2vmin;
@@ -155,15 +158,15 @@ peg {
     cursor: pointer;
     outline: none;
     color: #fff;
-    background: linear-gradient(0.25turn, #4D936F, #745125, #848172);
+    background: linear-gradient(0.25turn, #305c45ba, #745025ac, #7d775c);
     border: none;
     border-radius: 15px;
     box-shadow: 0.4vmin 0.4vmin 0.4vmin black;
   }
 
-.button:hover {background-color: #3e8e41}
+  .ng-button:hover , .sub-button:hover , .rmv-button:hover {background-color: #3e8e41}
 
-.button:active {
+  .ng-button:active , .sub-button:active , .rmv-button:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
