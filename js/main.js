@@ -12,10 +12,10 @@
 
 /*----- app's state (variables) -----*/
 let gameStatus; //game in session = null, victory = 'W', loser = 'L'
-let roundsLeft; //10 rounds means 10 guesses
+let roundsLeft; //9 roundsLeft means 10 guesses total
 let guessSlot; //array to hold the current guess slots group
 let currentGuess; //array that holds the current player guesses data
-let masterCode; // array with the sequence the player has to guess
+let masterCode; // array with the sequence the player has to guess, MASTERMINDS CODE
 let difficulty; //4 for standard mode, 5 for MINDFLAYER
 let clues; //array that holds the guess feed back clues
 /*----- cached element references -----*/
@@ -66,9 +66,11 @@ function render() {
     }
 
     
-    if (gameStatus) {return}
+    if (!gameStatus) {return}
         else if(gameStatus === 'W'){ 
             //execute winning actions
+            //reveal Masterminds code
+            
         }
         else {
             //nothing?
@@ -101,7 +103,8 @@ function layoutPegs() {
 
 //<----handlers
 function handleSubmitGuess(){
-    if (currentGuess.length < difficulty) alert('you have more pegs to fill');
+    if (gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
+    if (currentGuess.length < difficulty) return alert('you have more pegs to fill');
     let whitePegCount = 0;
     let blackPegCount = 0;
     currentGuess.forEach(function(peg, idx){
@@ -121,32 +124,35 @@ function handleSubmitGuess(){
     } else {
         roundsLeft--;
     }
-    //empty clues array
+
     clues = [];
-    clues.length = 0;
+    
+    currentGuess = [];
 }
 
 function handlePegRemover () {
-    if (currentGuess.length === 0) alert('not enough pegs'); //need change this
+    if (gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
+    if (currentGuess.length === 0) return alert('not enough pegs'); //need change this
     currentGuess.pop();
     render();
   }
 
 function handlePegSelector (evt) {
-    //update the current guesses array with the peg selected
+    if (gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
+    
+    //Gaurd
     if (evt.target.classList.value === 'selector'){
         if (currentGuess.length >= difficulty) {
             alert('guesses full'); // need to replace later
             return;
         }
         currentGuess.push(evt.target.id);
-        
-        // console.log(evt.target.id);
         render();
     }
 }
 
 function handleNewGame () {
+    if (!gamestatus) {}//ask if sure
     init();
 }
   //<---handlers

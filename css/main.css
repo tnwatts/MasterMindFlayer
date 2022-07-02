@@ -137,6 +137,9 @@ peg {
     width: 50%;
     height: 56%;
 }
+peg:hover {
+    background:rgba(0, 0, 0, 0.22);
+}
 
 .empty{
     background: radial-gradient(closest-side, #615e5e, #343930, #1d1a18);
@@ -182,7 +185,7 @@ weirdly in firefox and needs its own settings*/
     box-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(0, 0, 0, 0.742);
   }
 
-  .ng-button:hover , .sub-button:hover , .rmv-button:hover {background-color: #3e8e41}
+  .ng-button:hover , .sub-button:hover , .rmv-button:hover {background-color: #000000}
 
   .ng-button:active , .sub-button:active , .rmv-button:active {
   background-color: #3e8e41;
