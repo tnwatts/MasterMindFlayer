@@ -39,7 +39,7 @@ body2 {
 
 main {
     margin-top: -10vmin;
-    height: 84%;
+    height: 80vmin;
     width: 34vmin;
     display: grid;
     grid-template-columns: 1fr  2.7fr;
@@ -63,7 +63,7 @@ side {
     background: linear-gradient(to top right, #4C6657, #8680729f);
     box-shadow: 0.4vmin 0.4vmin 0.4vmin 0.4vmin rgba(10, 49, 53, 0.759);
     border-radius: 20%;
-    margin: 51vmin 0 0 3vmin;
+    margin: 41vmin 3vmin 0 0;
     width:14vmin;
     height: 28vmin;
     display: grid;
@@ -71,7 +71,19 @@ side {
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     padding: 0.4vmin 1.2vmin;
 }
-
+.greeting{
+    position: absolute;
+    color:#989f6cd1;
+    top:15vmin;
+    left: 12vmin;
+    font-size: 5vmin;
+    font-family: 'BioRhyme', serif;
+    text-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(7, 34, 25, 0.857);
+    background: radial-gradient(circle at 50% 50%,#3c3a2c 1px, #898072 2%,rgba(105, 140, 105, 0.648) 50%, #484128db 100%);
+    box-shadow: 1vmin 1vmin 1vmin #230c0cd5;
+    border-radius: 50%;
+    padding: 3vmin;
+}
 .submit {
     grid-column: span 2;
     height: 5vmin;
@@ -86,6 +98,9 @@ side {
 .selector {
     border-radius: 50%; 
     background-color: green;
+}
+.selector:hover {
+    background: #000000;
 }
 
 #red {
@@ -125,8 +140,10 @@ side {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    padding: -5vmin 0 0 0;
+    padding: 0 0.5vmin 0.5vmin;
+    
 }
+
 .peg-cell-guess , #master-cell {
     display: flex;
     justify-content: space-around;
@@ -137,9 +154,7 @@ peg {
     width: 50%;
     height: 56%;
 }
-peg:hover {
-    background:rgba(0, 0, 0, 0.22);
-}
+
 
 .empty{
     background: radial-gradient(closest-side, #615e5e, #343930, #1d1a18);
@@ -154,7 +169,7 @@ peg:hover {
     align-items: center;
 }
 
-.ng-button , .sub-button {
+.ng-button ,.rmv-button {
     
     width: 15vmin;
     padding: 1vmin 1vmin;
@@ -171,7 +186,7 @@ peg:hover {
 
 /*have to seperate this button's css because it was behaving 
 weirdly in firefox and needs its own settings*/
-  .rmv-button {
+.sub-button   {
     width: 10vmin;
     padding: 1vmin 1vmin;
     font-size: 2vmin;

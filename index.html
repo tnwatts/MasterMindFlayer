@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master MindFlayer</title>
-    <link rel="stylesheet" href="css/main.css">
-    <script defer src="js/main.js"></script>
-    
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Master MindFlayer</title>
+        <link rel="stylesheet" href="css/main.css">
+        <script defer src="js/main.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=BioRhyme&display=swap" rel="stylesheet">
+    </head>
     <body>
-       <body2> 
+        <body2> 
+            <side>
+                <div class='selector' id='red'>   </div>
+                <div class='selector' id='green'> </div>
+                <div class='selector' id='blue'>  </div>
+                <div class='selector' id='yellow'></div>
+                <div class='selector' id='brown'> </div>
+                <div class='selector' id='orange'></div>
+                <div class='selector' id='black'> </div>
+                <div class='selector' id='white'> </div>
+                <div class="submit">
+                    <button class='sub-button'>Submit</button>
+                </div>
+            </side>
+        <div class='greeting'>MasterMind!</div>
         <main>
             <div id='empty'></div>
             <div id='master-cell'></div>
@@ -36,22 +52,9 @@
             <div class='peg-cell-guess'></div>
             <div class= 'new-game'>
                 <button class='ng-button'>New Game</button>
-                <button class='sub-button'>Submit</button>
-            </div>
-        </main>
-        <side>
-            <div class='selector' id='red'>   </div>
-            <div class='selector' id='green'> </div>
-            <div class='selector' id='blue'>  </div>
-            <div class='selector' id='yellow'></div>
-            <div class='selector' id='brown'> </div>
-            <div class='selector' id='orange'></div>
-            <div class='selector' id='black'> </div>
-            <div class='selector' id='white'> </div>
-            <div class="submit">
                 <button class='rmv-button'>Remove</button>
             </div>
-        </side>
+        </main>
     </body2>
 </body>
 </html>

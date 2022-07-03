@@ -16,7 +16,7 @@ let roundsLeft; //9 roundsLeft means 10 guesses total
 let guessSlot; //array to hold the current guess slots group
 let currentGuess; //array that holds the current player guesses data
 let masterCode; // array with the sequence the player has to guess, MASTERMINDS CODE
-let difficulty; //4 for standard mode, 5 for MINDFLAYER
+let difficulty; //4 for standard mode, 5 for MINDFLAYER(icebox), this represents how many pegs make up masterminds code
 let clues; //array that holds the guess feed back clues
 /*----- cached element references -----*/
 const selectorEls = document.querySelectorAll('.selector');
@@ -42,7 +42,7 @@ function init() {
     masterCode.forEach((string, idx) => {                       //MASTERMIND IS PICKING HIS CODE HERE
         masterCode[idx] = pegs[Math.floor(Math.random()*8)];
     })
-    loadGuessEls();
+    // loadGuessEls();
     layoutPegs();
     render();
 }
@@ -64,23 +64,21 @@ function render() {
         }
         
     }
-
-    
-    if (!gameStatus) {return}
-        else if(gameStatus === 'W'){ 
-            //execute winning actions
-            //reveal Masterminds code
-            
+    if(gameStatus === 'W'){
+        alert('YOU WON');
+        for( i=0 ; i<difficulty ; i++){
+            masterEls.children[i].setAttribute('id' , `${masterCode[i]}`);
+            masterEls.children[i].textContent = '';
         }
-        else {
-            //nothing?
-        }
+    }else if(gameStatus === 'L'){
+       alert('YOU LOST');
+    }
     
 
 }
-function loadGuessEls() {
-    guessSlot = guessEls[roundsLeft].children;
-}
+// function loadGuessEls() {
+//     guessSlot = guessEls[roundsLeft].children;
+// }
 function layoutPegs() {
     let allEls = [...guessEls, ...clueEls];
     allEls.forEach(function(El){
@@ -103,7 +101,7 @@ function layoutPegs() {
 
 //<----handlers
 function handleSubmitGuess(){
-    if (gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
+    if (!!gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
     if (currentGuess.length < difficulty) return alert('you have more pegs to fill');
     let whitePegCount = 0;
     let blackPegCount = 0;
@@ -114,8 +112,6 @@ function handleSubmitGuess(){
     
     clues = Array(difficulty).fill('black', 0 , blackPegCount);
     clues.fill('white' , blackPegCount , (blackPegCount + whitePegCount));
-    console.log(clues);
-    render();
     
     if (blackPegCount >= difficulty) {
         gameStatus = 'W';
@@ -124,24 +120,24 @@ function handleSubmitGuess(){
     } else {
         roundsLeft--;
     }
-
-    clues = [];
     
+    render();
+    clues = [];
     currentGuess = [];
 }
 
 function handlePegRemover () {
-    if (gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
+    if (!!gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
     if (currentGuess.length === 0) return alert('not enough pegs'); //need change this
     currentGuess.pop();
     render();
   }
 
 function handlePegSelector (evt) {
-    if (gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
     
     //Gaurd
     if (evt.target.classList.value === 'selector'){
+        if (!!gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
         if (currentGuess.length >= difficulty) {
             alert('guesses full'); // need to replace later
             return;
@@ -152,8 +148,8 @@ function handlePegSelector (evt) {
 }
 
 function handleNewGame () {
-    if (!gamestatus) {}//ask if sure
-    init();
+    if (!(!!gameStatus)) {}//ask if sure
+    init();//
 }
   //<---handlers
   
