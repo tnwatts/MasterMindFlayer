@@ -34,15 +34,17 @@ init();
 
 function init() {
     gameStatus = null;
-    difficulty = 4; //Icebox item = 2 difficulty modes
+    difficulty = 4; //Icebox item = 2 difficulty modes selectable by user
     roundsLeft = 9; 
     clues = [];
     currentGuess = [];
-    masterCode = Array(difficulty).fill();
-    masterCode.forEach((string, idx) => {                       //MASTERMIND IS PICKING HIS CODE HERE
-        masterCode[idx] = pegs[Math.floor(Math.random()*8)];
-    })
-    loadGuessEls();
+    masterCode = randomUniquePegs(difficulty);
+    
+    // Array(difficulty).fill();
+    // masterCode.forEach((string, idx) => {                       //MASTERMIND IS PICKING HIS CODE HERE
+    //     masterCode[idx] = pegs[Math.floor(Math.random()*8)];
+    // })
+    
     layoutPegs();
     render();
 }
@@ -73,21 +75,36 @@ function render() {
        alert('YOU LOST');
     }
 }
+function randomUniquePegs(length){
+    let rando;
+    let uniqueArr = new Array(length).fill('');
+    for( i=0 ; i<length ; i++ ){
+        rando = Math.floor(Math.random()*pegs.length);
+        if (uniqueArr.includes(pegs[rando])){i--}
+        else {uniqueArr[i] = pegs[rando]};
+    }
+        return uniqueArr;
+   }
 
-function loadGuessEls() {
-    guessSlot = guessEls[roundsLeft].children;
+    
+
+function removeAllChildren(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }
 
 function layoutPegs() {
     let allEls = [...guessEls, ...clueEls];
-    allEls.forEach(function(El){
+    allEls.forEach(function(el){
+        removeAllChildren(el);                      //need to remove all children for games after the first
         for(i = 0; i <difficulty; i++) {
             let peg = document.createElement('peg');
             peg.setAttribute('class','empty');
-            El.appendChild(peg);
+            el.appendChild(peg);
         }
     });
-    
+    removeAllChildren(masterEls);
     for(i=0; i<difficulty; i++) {
         let peg = document.createElement('peg');
         peg.setAttribute('class' , 'mystery');
