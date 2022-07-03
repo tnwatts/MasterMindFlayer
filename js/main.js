@@ -42,7 +42,7 @@ function init() {
     masterCode.forEach((string, idx) => {                       //MASTERMIND IS PICKING HIS CODE HERE
         masterCode[idx] = pegs[Math.floor(Math.random()*8)];
     })
-    // loadGuessEls();
+    loadGuessEls();
     layoutPegs();
     render();
 }
@@ -62,23 +62,22 @@ function render() {
         } else {
             clueEls[roundsLeft].children[i].setAttribute('id', '');
         }
-        
     }
     if(gameStatus === 'W'){
         alert('YOU WON');
-        for( i=0 ; i<difficulty ; i++){
+        for( i=0 ; i<difficulty ;i++ ){
             masterEls.children[i].setAttribute('id' , `${masterCode[i]}`);
             masterEls.children[i].textContent = '';
         }
     }else if(gameStatus === 'L'){
        alert('YOU LOST');
     }
-    
-
 }
-// function loadGuessEls() {
-//     guessSlot = guessEls[roundsLeft].children;
-// }
+
+function loadGuessEls() {
+    guessSlot = guessEls[roundsLeft].children;
+}
+
 function layoutPegs() {
     let allEls = [...guessEls, ...clueEls];
     allEls.forEach(function(El){
@@ -87,7 +86,8 @@ function layoutPegs() {
             peg.setAttribute('class','empty');
             El.appendChild(peg);
         }
-    })
+    });
+    
     for(i=0; i<difficulty; i++) {
         let peg = document.createElement('peg');
         peg.setAttribute('class' , 'mystery');
@@ -117,11 +117,10 @@ function handleSubmitGuess(){
         gameStatus = 'W';
     } else if(roundsLeft === 0) {
         gameStatus = 'L';
-    } else {
-        roundsLeft--;
     }
     
     render();
+    roundsLeft--;
     clues = [];
     currentGuess = [];
 }
