@@ -14,6 +14,8 @@
     <body>
         <body2> 
             <!-- <h6>Master Mind will pick a code made up of four unique pegs, you have 10 guesses to get the code correct</h6> -->
+            <div class='greeting'>MasterMind!</div>
+            <div clas='rules'></div>
             <side>
                 <div class='selector' id='red'>   </div>
                 <div class='selector' id='green'> </div>
@@ -27,7 +29,6 @@
                     <button class='sub-button'>Submit</button>
                 </div>
             </side>
-        <div class='greeting'>MasterMind!</div>
         <main>
             <div id='empty'></div>
             <div id='master-cell'></div>
@@ -53,9 +54,21 @@
             <div class='peg-cell-guess'></div>
             <div class= 'new-game'>
                 <button class='ng-button'>New Game</button>
-                <button class='rmv-button'>Remove</button>
+                <button class='rmv-button'>Undo</button>
             </div>
         </main>
+        <div class='tracker-container'>
+            <div class='tracker'></div>
+            <div class='tracker'></div>
+            <div class='tracker'></div>
+            <div class='tracker'></div>
+            <div class='tracker'></div>
+            <div class='tracker'></div>
+            <div class='tracker'></div>
+            <div class='tracker'></div>
+            <div class='tracker'></div>
+            <div class='tracker'>turn 1</div>
+        </div>
     </body2>
 </body>
 </html>

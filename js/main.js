@@ -23,6 +23,7 @@ const selectorEls = document.querySelectorAll('.selector');
 const guessEls = document.querySelectorAll('.peg-cell-guess');
 const clueEls = document.querySelectorAll('.peg-cell-clue');
 const masterEls = document.getElementById('master-cell');
+const trackerEls = document.querySelectorAll('.tracker');
 /*----- event listeners -----*/
 document.querySelector('side').addEventListener('click', handlePegSelector);
 document.querySelector('.ng-button').addEventListener('click', handleNewGame);
@@ -38,13 +39,7 @@ function init() {
     roundsLeft = 9; 
     clues = [];
     currentGuess = [];
-    masterCode = randomUniquePegs(difficulty);
-    
-    // Array(difficulty).fill();
-    // masterCode.forEach((string, idx) => {                       //MASTERMIND IS PICKING HIS CODE HERE
-    //     masterCode[idx] = pegs[Math.floor(Math.random()*8)];
-    // })
-    
+    masterCode = randomUniquePegs(difficulty);   //MASTERMIND IS PICKING HIS CODE HERE
     layoutPegs();
     render();
 }
@@ -67,12 +62,11 @@ function render() {
     }
     if(gameStatus === 'W'){
         alert('YOU WON');
-        for( i=0 ; i<difficulty ;i++ ){
-            masterEls.children[i].setAttribute('id' , `${masterCode[i]}`);
-            masterEls.children[i].textContent = '';
-        }
+        revealMasterCode();
+        
     }else if(gameStatus === 'L'){
        alert('YOU LOST');
+       revealMasterCode();
     }
 }
 function randomUniquePegs(length){
@@ -86,7 +80,6 @@ function randomUniquePegs(length){
         return uniqueArr;
    }
 
-    
 
 function removeAllChildren(parent) {
     while (parent.firstChild) {
@@ -167,5 +160,10 @@ function handleNewGame () {
     if (!(!!gameStatus)) {}//ask if sure
     init();//
 }
-  //<---handlers
-  
+
+function revealMasterCode() {
+    for( i=0 ; i<difficulty ;i++ ){
+        masterEls.children[i].setAttribute('id' , `${masterCode[i]}`);
+        masterEls.children[i].textContent = '';
+    }
+}
