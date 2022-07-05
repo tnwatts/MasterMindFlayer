@@ -5,14 +5,13 @@
     'blue',
     'yellow',
     'brown',
-    'orange',
-    'black',
-    'white'
+    'orange'
 ];
 
 /*----- app's state (variables) -----*/
 let gameStatus; //game in session = null, victory = 'W', loser = 'L'
 let roundsLeft; //9 roundsLeft means 10 guesses total
+let roundChanged; //variable that tracks if the round has changed
 let guessSlot; //array to hold the current guess slots group
 let currentGuess; //array that holds the current player guesses data
 let masterCode; // array with the sequence the player has to guess, MASTERMINDS CODE
@@ -24,11 +23,15 @@ const guessEls = document.querySelectorAll('.peg-cell-guess');
 const clueEls = document.querySelectorAll('.peg-cell-clue');
 const masterEls = document.getElementById('master-cell');
 const trackerEls = document.querySelectorAll('.tracker');
+const greetingContainer = document.querySelector('.greeting');
+const greetingEl = document.querySelector('.greeting > div');
+const rulesEl = document.querySelector('.greeting > a');
 /*----- event listeners -----*/
 document.querySelector('side').addEventListener('click', handlePegSelector);
 document.querySelector('.ng-button').addEventListener('click', handleNewGame);
 document.querySelector('.rmv-button').addEventListener('click', handlePegRemover);
 document.querySelector('.sub-button').addEventListener('click', handleSubmitGuess);
+document.querySelector('.greeting').addEventListener('click' , handleGreeting);
 /*----- functions -----*/
 
 init();
@@ -37,11 +40,15 @@ function init() {
     gameStatus = null;
     difficulty = 4; //Icebox item = 2 difficulty modes selectable by user
     roundsLeft = 9; 
+    roundChanged = false;
     clues = [];
     currentGuess = [];
     masterCode = randomUniquePegs(difficulty);   //MASTERMIND IS PICKING HIS CODE HERE
+    trackerEls.forEach((el) => el.textContent = '');
+    trackerEls[9].textContent = `<--Turn: 1`;
     layoutPegs();
     render();
+    
 }
 
 //init functions-->
@@ -60,6 +67,12 @@ function render() {
             clueEls[roundsLeft].children[i].setAttribute('id', '');
         }
     }
+    if (roundChanged && (!(!!gameStatus))){
+        trackerEls[roundsLeft].textContent = '';
+        trackerEls[roundsLeft-1].textContent = `<--Turn: ${10-(--roundsLeft)}`;
+        roundChanged = false;
+    }
+
     if(gameStatus === 'W'){
         alert('YOU WON');
         revealMasterCode();
@@ -125,12 +138,11 @@ function handleSubmitGuess(){
     
     if (blackPegCount >= difficulty) {
         gameStatus = 'W';
-    } else if(roundsLeft === 0) {
+    } else if(roundsLeft < 1) {
         gameStatus = 'L';
     }
-    
+    roundChanged = true;
     render();
-    roundsLeft--;
     clues = [];
     currentGuess = [];
 }
@@ -161,6 +173,23 @@ function handleNewGame () {
     init();//
 }
 
+function handleGreeting (evt) {
+    // console.log(evt.target.childNodes);
+    // const spanNode; =  rulesEl.childNodes[1].cloneNode(true);
+    // console.log(spanNode);
+    if (greetingContainer.classList.value === 'greeting-rules'){
+        greetingContainer.classList.value = 'greeting';
+        greetingEl.innerText = "MasterMind!";
+        rulesEl.innerText = "Click here for rules";
+        
+    } else {
+        greetingContainer.classList.value = 'greeting-rules';
+        greetingEl.innerText = "";
+        rulesEl.innerText = "You must guess the code. The code is 4 unique pegs. You have 10 guesses. Black clue pegs indicate a peg is the correct color and in the correct position. A white peg indicates only a correct color. The orientation of the pegs does not indicate which peg is correct.";
+    }
+    // check which class it is and either add rules text or remove rules text
+
+}
 function revealMasterCode() {
     for( i=0 ; i<difficulty ;i++ ){
         masterEls.children[i].setAttribute('id' , `${masterCode[i]}`);

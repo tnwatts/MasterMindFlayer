@@ -65,26 +65,54 @@ side {
     box-shadow: 0.4vmin 0.4vmin 0.4vmin 0.4vmin rgba(10, 49, 53, 0.759);
     border-radius: 20%;
     margin: 41vmin 3vmin 0 0;
-    width: 14vmin;
-    height: 28vmin;
+    width: 13vmin;
+    height: 22vmin;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     padding: 0.4vmin 1.2vmin;
 }
 .greeting {
     position: absolute;
     margin-top: -50vmin;
-    
+    right: 67%;
+    background: radial-gradient(circle at 50% 50%,#6e6e48 1px, #898072 2%,rgba(105, 140, 105, 0.648) 50%, #484128db 100%);
+    text-align: center;
+    box-shadow: 1vmin 1vmin 1vmin #230c0cd5;
+    border-radius: 25%;
+    padding: 3vmin; 
+}
+.greeting > div{
+    font-weight: 900;
     color:#acb57de7; 
-    right: 58%;
+    font-family: 'BioRhyme', serif;
+    font-size: 3.5vmin;
+    text-align: center;
+    text-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(7, 34, 25, 0.857);
     
-    font-size: 4vmin;
+}
+.greeting > a{
+    font-family: 'BioRhyme', serif;
+    font-weight: 500;
+    font-size: 2vmin;
+    color: #d0d7acf3;
+
+}
+.greeting-rules {
+    transition: .5s;
+    width: 30vmin;
+    position: absolute;
+    margin-top: -40vmin;
+    text-align: center;
+    color:#d0d7acf3; 
+    right: 67%;
+    font-weight: 500;
+    font-size: 2vmin;
     font-family: 'BioRhyme', serif;
     text-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(7, 34, 25, 0.857);
-    background: radial-gradient(circle at 50% 50%,#3c3a2c 1px, #898072 2%,rgba(105, 140, 105, 0.648) 50%, #484128db 100%);
+    background: radial-gradient(circle at 50% 50%,#2d2b21 1px, #554f44 2%,rgba(57, 78, 57, 0.648) 50%, #3a3420db 100%);
     box-shadow: 1vmin 1vmin 1vmin #230c0cd5;
-    border-radius: 50%;
+    border-radius: 25%;
     padding: 3vmin; 
 }
 
@@ -270,8 +298,10 @@ weirdly in firefox and needs its own settings*/
 
 .tracker {
     height: 6vmin;
-    width: 15vmin;
-    border: 2px solid black;
-    
-    
+    width: 18vmin;
+    color:#c5cbc0;
+    text-shadow: 0.4vmin 0.4vmin 0.4vmin rgb(14, 60, 44);
+    line-height: 5vmin;
+    font-weight: 900;
+    font-family: 'BioRhyme', serif;
 }
