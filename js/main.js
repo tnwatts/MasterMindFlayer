@@ -26,6 +26,7 @@ const trackerEls = document.querySelectorAll('.tracker');
 const greetingContainer = document.querySelector('.greeting');
 const greetingEl = document.querySelector('.greeting > div');
 const rulesEl = document.querySelector('.greeting > a');
+const warningEl = document.querySelector('.warning');
 /*----- event listeners -----*/
 document.querySelector('side').addEventListener('click', handlePegSelector);
 document.querySelector('.ng-button').addEventListener('click', handleNewGame);
@@ -38,7 +39,7 @@ init();
 
 function init() {
     gameStatus = null;
-    difficulty = 4; //Icebox item = 2 difficulty modes selectable by user
+    difficulty = 4; //Icebox item  = 2 difficulty modes selectable by user
     roundsLeft = 9; 
     roundChanged = false;
     clues = [];
@@ -74,12 +75,15 @@ function render() {
     }
 
     if(gameStatus === 'W'){
-        alert('YOU WON');
+        document.querySelector('.status').innerText = 'You Won!'
         revealMasterCode();
         
     }else if(gameStatus === 'L'){
-       alert('YOU LOST');
-       revealMasterCode();
+        document.querySelector('.status').innerText = 'You Lost!'
+        revealMasterCode();
+    }else {
+        document.querySelector('.status').innerText = 'Game On!'
+        
     }
 }
 function randomUniquePegs(length){
@@ -124,8 +128,8 @@ function layoutPegs() {
 
 //<----handlers
 function handleSubmitGuess(){
-    if (!!gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
-    if (currentGuess.length < difficulty) return alert('you have more pegs to fill');
+    if (!!gameStatus) return displayWarning('Press New Game!');
+    if (currentGuess.length < difficulty) return displayWarning('Empty Row!');
     let whitePegCount = 0;
     let blackPegCount = 0;
     currentGuess.forEach(function(peg, idx){
@@ -148,8 +152,8 @@ function handleSubmitGuess(){
 }
 
 function handlePegRemover () {
-    if (!!gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
-    if (currentGuess.length === 0) return alert('not enough pegs'); //need change this
+    if (!!gameStatus) return displayWarning('Press New Game!');
+    if (currentGuess.length === 0) return displayWarning('Empty Row!'); //need change this
     currentGuess.pop();
     render();
   }
@@ -158,9 +162,9 @@ function handlePegSelector (evt) {
     
     //Gaurd
     if (evt.target.classList.value === 'selector'){
-        if (!!gameStatus) return alert("CLICK NEW GAME TO PLAY AGAIN!");
+        if (!!gameStatus) return displayWarning('Press New Game!');
         if (currentGuess.length >= difficulty) {
-            alert('guesses full'); // need to replace later
+            displayWarning('Full Row!'); // need to replace later
             return;
         }
         currentGuess.push(evt.target.id);
@@ -185,14 +189,18 @@ function handleGreeting (evt) {
     } else {
         greetingContainer.classList.value = 'greeting-rules';
         greetingEl.innerText = "";
-        rulesEl.innerText = "You must guess the code. The code is 4 unique pegs. You have 10 guesses. Black clue pegs indicate a peg is the correct color and in the correct position. A white peg indicates only a correct color. The orientation of the pegs does not indicate which peg is correct.";
+        rulesEl.innerText = "You must guess the code.\nThe code is 4 unique pegs.\nYou have 10 guesses.\nBlack clue pegs indicate a peg\n is the correct color and\n in the correct position.\nA white peg indicates\nonly a correct color.\nThe orientation of the pegs does not indicate which peg is correct.";
     }
-    // check which class it is and either add rules text or remove rules text
-
+    // check which class it is and either add rules text or remove rules text   
 }
 function revealMasterCode() {
     for( i=0 ; i<difficulty ;i++ ){
         masterEls.children[i].setAttribute('id' , `${masterCode[i]}`);
         masterEls.children[i].textContent = '';
     }
+}
+function displayWarning(str) {
+    warningEl.innerText = str;
+    warningEl.style.opacity = '1';
+    setTimeout(function () { warningEl.style.opacity = '0';}, 5000);
 }
