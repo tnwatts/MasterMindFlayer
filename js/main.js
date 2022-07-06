@@ -27,6 +27,7 @@ const greetingContainer = document.querySelector('.greeting');
 const greetingEl = document.querySelector('.greeting > div');
 const rulesEl = document.querySelector('.greeting > a');
 const warningEl = document.querySelector('.warning');
+const backEl = document.querySelector('.background-container');
 /*----- event listeners -----*/
 document.querySelector('side').addEventListener('click', handlePegSelector);
 document.querySelector('.ng-button').addEventListener('click', handleNewGame);
@@ -35,11 +36,11 @@ document.querySelector('.sub-button').addEventListener('click', handleSubmitGues
 document.querySelector('.greeting').addEventListener('click' , handleGreeting);
 /*----- functions -----*/
 
-init();
+init(4);
 
-function init() {
+function init(int) {
     gameStatus = null;
-    difficulty = 4; //Icebox item  = 2 difficulty modes selectable by user
+    difficulty = int;
     roundsLeft = 9; 
     roundChanged = false;
     clues = [];
@@ -49,7 +50,6 @@ function init() {
     trackerEls[9].textContent = `<--Turn: 1`;
     layoutPegs();
     render();
-    
 }
 
 //init functions-->
@@ -77,7 +77,7 @@ function render() {
     if(gameStatus === 'W'){
         document.querySelector('.status').innerText = 'You Won!'
         revealMasterCode();
-        
+        //add mindFlayer button
     }else if(gameStatus === 'L'){
         document.querySelector('.status').innerText = 'You Lost!'
         revealMasterCode();
@@ -132,10 +132,27 @@ function handleSubmitGuess(){
     if (currentGuess.length < difficulty) return displayWarning('Empty Row!');
     let whitePegCount = 0;
     let blackPegCount = 0;
-    currentGuess.forEach(function(peg, idx){
-        if(peg === masterCode[idx]){blackPegCount++}
-        else if(masterCode.includes(peg)){whitePegCount++}
-    });
+    let masterCopy = masterCode.slice();
+    let guessCopy = currentGuess.slice();
+
+    guessCopy.forEach(function(peg, idx){
+        if(peg === masterCopy[idx]){
+            blackPegCount++;
+            masterCopy[idx] = null;
+            guessCopy[idx] = null;
+        } 
+    })
+    
+    masterCopy = masterCopy.filter((el) => el !== null);
+    guessCopy = guessCopy.filter((el) => el !== null);
+
+    guessCopy.forEach(function(peg){
+        if(masterCopy.includes(peg)){
+            whitePegCount++;
+            masterCopy = masterCopy.filter((el) => el !== peg);
+            
+        }
+    })
     
     clues = Array(difficulty).fill('black', 0 , blackPegCount);
     clues.fill('white' , blackPegCount , (blackPegCount + whitePegCount));
@@ -145,6 +162,7 @@ function handleSubmitGuess(){
     } else if(roundsLeft < 1) {
         gameStatus = 'L';
     }
+
     roundChanged = true;
     render();
     clues = [];
@@ -189,7 +207,7 @@ function handleGreeting (evt) {
     } else {
         greetingContainer.classList.value = 'greeting-rules';
         greetingEl.innerText = "";
-        rulesEl.innerText = "You must guess the code.\nThe code is 4 unique pegs.\nYou have 10 guesses.\nBlack clue pegs indicate a peg\n is the correct color and\n in the correct position.\nA white peg indicates\nonly a correct color.\nThe orientation of the pegs does not indicate which peg is correct.";
+        rulesEl.innerText = "You must guess the code.\nThe code is 4 unique pegs.\nYou have 10 guesses.\nBlack clue pegs indicate a peg\n is the correct color and\n in the correct position.\nA white peg indicates\nonly a correct color.\nThe orientation of the black and white pegs does not indicate which colored peg is correct.";
     }
     // check which class it is and either add rules text or remove rules text   
 }
@@ -203,4 +221,34 @@ function displayWarning(str) {
     warningEl.innerText = str;
     warningEl.style.opacity = '1';
     setTimeout(function () { warningEl.style.opacity = '0';}, 5000);
+}
+function mindFlayerTransition(){
+    backEl.style.opacity = '1';
+    //change background color/styling for everything, body/message boxs/selector boxes/buttons
+    //change picture on mindflayer row
+    //increase size of gameboard to accomodate 5 pegs
+    //increase containers 
+    guessEls.forEach(function(el){
+        el.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
+    })
+    guessEls.forEach(function(el){
+        el.style.width = '30vmin';
+    })
+    
+    clueEls.forEach(function(el){
+        el.style.width = '100%';
+    })
+    clueEls.forEach(function(el){
+        // el.style.display = flex;
+    })
+    masterEls.style.width = '30vmin';
+    // clueEls.style.width = '10vmin';
+    masterEls.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
+    //increase containers 
+    // masterEls.style.gridTemplateAreas = '"a . b"". c .""d . e"';
+    
+    init(5);
+}
+function turnOffMF() {
+    backEl.style.background = '';
 }

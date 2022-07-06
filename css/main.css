@@ -30,8 +30,23 @@ body2 {
         radial-gradient(at bottom right,
             rgba(255, 100, 100, 0.5),
             transparent 100vmin);
+    /* background-image: url('https://cdn.wallpapersafari.com/55/24/3vzErZ.jpg'); */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: opacity 2s ease-out;
+    /* background-size: cover; */
 }
-
+.background-container {
+    position: absolute;
+    background-image: url('https://cdn.wallpapersafari.com/55/24/3vzErZ.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    opacity: 0;
+    transition: opacity 3s ease-out;
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+}
 main {
     margin: 0;
     margin-top: -3vmin;
@@ -207,6 +222,7 @@ side {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    /* grid-template-areas: "a b c" "d e f" "g h i"; */
     justify-content: space-around;
     padding: 5%;
     padding-left: 8%;
@@ -224,7 +240,8 @@ side {
     height: 6vmin;
     padding: 2%;
     padding-left: 4%;
-    gap: 5%
+    gap: 5%;
+    transition: width 2s;
 }
 
 peg {
