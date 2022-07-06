@@ -21,7 +21,7 @@ let clues; //array that holds the guess feed back clues
 const selectorEls = document.querySelectorAll('.selector');
 const guessEls = document.querySelectorAll('.peg-cell-guess');
 const clueEls = document.querySelectorAll('.peg-cell-clue');
-const masterEls = document.getElementById('master-cell');
+const masterEls = document.querySelector('.master-cell');
 const trackerEls = document.querySelectorAll('.tracker');
 const greetingContainer = document.querySelector('.greeting');
 const greetingEl = document.querySelector('.greeting > div');
@@ -251,8 +251,10 @@ function handleMindflayer(){
     document.querySelector('.greeting > div').setAttribute('id', 'title');
     document.querySelector('.greeting').setAttribute('id','greeting-flayer');
     document.querySelector('.greeting > a').setAttribute('id','flayer-click');
+    document.querySelector('.master-cell').setAttribute('id', 'flayer-code-cell');
+    document.querySelector('side').setAttribute('id','flayer-side');
+    document.querySelector('.new-game').setAttribute('id','flayer-new-game');
 
-    
     
     document.querySelector('#mindflayer').innerText = 'Run Away!';
 }
@@ -298,6 +300,9 @@ function turnOffMF() {
     document.querySelector('.greeting > div').setAttribute('id', '');
     document.querySelector('.greeting').setAttribute('id','');
     document.querySelector('.greeting > a').setAttribute('id','');
+    document.querySelector('.master-cell').setAttribute('id', '');
+    document.querySelector('side').setAttribute('id','');
+    document.querySelector('.new-game').setAttribute('id','');
 }
     
     //<---render functions
