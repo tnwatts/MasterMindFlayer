@@ -229,9 +229,10 @@ function handleMindflayer(){
     // clueEls.forEach(function(el){
     //     el.setAttribute('id', 'flexClue');
     //     el.childNodes.forEach(function(childEl){
-    //         childEl.setAttribute('id', 'emptyFlex');
-    //     })
-    // })
+        //         childEl.setAttribute('id', 'emptyFlex');
+        //     })
+        // })
+    document.getElementById('empty').style.backgroundImage = 'url("https://cdn.shopify.com/s/files/1/1432/8830/products/mindflayertrophyhead-shopify_1024x1024.jpg?v=1656489737")';
     masterEls.style.width = '30vmin';
     masterEls.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
     document.querySelector('#mindflayer').innerText = 'Run Away!';
@@ -263,16 +264,16 @@ function turnOffMF() {
     guessEls.forEach(function(el){
         el.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
     })
-
+    
     guessEls.forEach(function(el){
         el.style.width = '24vmin';
     })
-    clueEls.forEach(function(el){
-        el.style.width = '6vmin';
-    })
-    
-    ;    masterEls.style.width = '24vmin';
-    masterEls.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+    // clueEls.forEach(function(el){
+        //     el.style.width = '6vmin';
+        // })
+        masterEls.style.width = '24vmin';
+        masterEls.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+    document.getElementById('empty').style.backgroundImage = 'url("https://w7.pngwing.com/pngs/737/396/png-transparent-mastermind-how-to-think-like-sherlock-holmes-221b-baker-street-his-last-bow-book-book-microphone-monochrome-sticker-thumbnail.png")';
     document.querySelector('#mindflayer').innerText = 'Challenge the MINDFLAYER!';
     init(4);
     clueEls.forEach(function(el){

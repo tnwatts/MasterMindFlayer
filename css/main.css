@@ -165,8 +165,8 @@ side {
 
 #empty {
     background: url("https://w7.pngwing.com/pngs/737/396/png-transparent-mastermind-how-to-think-like-sherlock-holmes-221b-baker-street-his-last-bow-book-book-microphone-monochrome-sticker-thumbnail.png");
-    background-size: cover;
-
+    background-size: 100% 100%;
+    object-fit: fill;
 }
 
 .selector {
@@ -228,6 +228,7 @@ side {
     padding-left: 8%;
     height: 6vmin;
     width: 6vmin;
+    transition: width 2s;
 }
 #flexClue {
     display: flex;
