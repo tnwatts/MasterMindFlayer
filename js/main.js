@@ -34,6 +34,7 @@ document.querySelector('.ng-button').addEventListener('click', handleNewGame);
 document.querySelector('.rmv-button').addEventListener('click', handlePegRemover);
 document.querySelector('.sub-button').addEventListener('click', handleSubmitGuess);
 document.querySelector('.greeting').addEventListener('click' , handleGreeting);
+document.querySelector('#mindflayer').addEventListener('click', handleMindflayer);
 /*----- functions -----*/
 
 init(4);
@@ -52,7 +53,7 @@ function init(int) {
     render();
 }
 
-//init functions-->
+//init functions--->
 function render() {
     for(i=0; i<difficulty ; i++){
         //render guesses
@@ -125,8 +126,7 @@ function layoutPegs() {
 }
 //<---init functions
 
-
-//<----handlers
+//handlers--->
 function handleSubmitGuess(){
     if (!!gameStatus) return displayWarning('Press New Game!');
     if (currentGuess.length < difficulty) return displayWarning('Empty Row!');
@@ -192,7 +192,7 @@ function handlePegSelector (evt) {
 
 function handleNewGame () {
     if (!(!!gameStatus)) {}//ask if sure
-    init();//
+    init(difficulty);//
 }
 
 function handleGreeting (evt) {
@@ -211,22 +211,11 @@ function handleGreeting (evt) {
     }
     // check which class it is and either add rules text or remove rules text   
 }
-function revealMasterCode() {
-    for( i=0 ; i<difficulty ;i++ ){
-        masterEls.children[i].setAttribute('id' , `${masterCode[i]}`);
-        masterEls.children[i].textContent = '';
-    }
-}
-function displayWarning(str) {
-    warningEl.innerText = str;
-    warningEl.style.opacity = '1';
-    setTimeout(function () { warningEl.style.opacity = '0';}, 5000);
-}
-function mindFlayerTransition(){
+
+function handleMindflayer(){
+    if(difficulty === 5) return turnOffMF();
     backEl.style.opacity = '1';
     //change background color/styling for everything, body/message boxs/selector boxes/buttons
-    //change picture on mindflayer row
-    //increase size of gameboard to accomodate 5 pegs
     //increase containers 
     guessEls.forEach(function(el){
         el.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
@@ -234,21 +223,47 @@ function mindFlayerTransition(){
     guessEls.forEach(function(el){
         el.style.width = '30vmin';
     })
-    
     clueEls.forEach(function(el){
         el.style.width = '100%';
     })
     clueEls.forEach(function(el){
-        // el.style.display = flex;
+        //reorient the clue empty slots
     })
     masterEls.style.width = '30vmin';
-    // clueEls.style.width = '10vmin';
     masterEls.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
-    //increase containers 
-    // masterEls.style.gridTemplateAreas = '"a . b"". c .""d . e"';
-    
-    init(5);
+    document.querySelector('#mindflayer').innerText = 'Run Away!';
+    if(difficulty === 4) init(5);
+}
+//<---handler functions
+
+//render functions--->
+function revealMasterCode() {
+    for( i=0 ; i<difficulty ;i++ ){
+        masterEls.children[i].setAttribute('id' , `${masterCode[i]}`);
+        masterEls.children[i].textContent = '';
+    }
+}
+
+function displayWarning(str) {
+    warningEl.innerText = str;
+    warningEl.style.opacity = '1';
+    setTimeout(function () { warningEl.style.opacity = '0';}, 5000);
 }
 function turnOffMF() {
-    backEl.style.background = '';
+    backEl.style.opacity = '0';
+    guessEls.forEach(function(el){
+        el.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+    })
+
+    guessEls.forEach(function(el){
+        el.style.width = '24vmin';
+    })
+    clueEls.forEach(function(el){
+        el.style.width = '6vmin';
+    })
+    clueEls.forEach(function(el){
+        //reorient the clue empty slots
+    })
+    init(4);
 }
+//<---render functions

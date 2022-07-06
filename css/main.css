@@ -298,15 +298,36 @@ weirdly in firefox and needs its own settings*/
     box-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(0, 0, 0, 0.742);
 }
 
+#mindflayer {
+    position: absolute;
+    /* visibility: visible; */
+    transition: .5s;
+    bottom: 9vmin;
+    right: 52%;
+    width: 15vmin;    
+    background: linear-gradient(0.25turn, #305c45ba, #745025ac, #7d775c);
+    box-shadow: 0.8vmin 0.8vmin 0.4vmin rgba(0, 0, 0, 0.742);
+    border: none;
+    border-radius: 15px;
+    padding: 1vmin 1vmin;
+    color: rgb(255, 255, 255);
+    font-size: 1.7vmin;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+}
+
 .ng-button:hover,
 .sub-button:hover,
-.rmv-button:hover {
+.rmv-button:hover,
+#mindflayer:hover {
     background-color: #000000
 }
 
 .ng-button:active,
 .sub-button:active,
-.rmv-button:active {
+.rmv-button:active,
+#mindflayer:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
