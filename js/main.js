@@ -223,16 +223,25 @@ function handleMindflayer(){
     guessEls.forEach(function(el){
         el.style.width = '30vmin';
     })
-    clueEls.forEach(function(el){
-        el.style.width = '100%';
-    })
-    clueEls.forEach(function(el){
-        //reorient the clue empty slots
-    })
+    // clueEls.forEach(function(el){
+    //     el.style.width = '100%';
+    // // })
+    // clueEls.forEach(function(el){
+    //     el.setAttribute('id', 'flexClue');
+    //     el.childNodes.forEach(function(childEl){
+    //         childEl.setAttribute('id', 'emptyFlex');
+    //     })
+    // })
     masterEls.style.width = '30vmin';
     masterEls.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
     document.querySelector('#mindflayer').innerText = 'Run Away!';
     if(difficulty === 4) init(5);
+    clueEls.forEach(function(el){
+        el.setAttribute('id', 'flexClue');
+        el.childNodes.forEach(function(childEl){
+            childEl.setAttribute('id', 'emptyFlex');
+        })
+    })
 }
 //<---handler functions
 
@@ -261,9 +270,16 @@ function turnOffMF() {
     clueEls.forEach(function(el){
         el.style.width = '6vmin';
     })
-    clueEls.forEach(function(el){
-        //reorient the clue empty slots
-    })
+    
+    ;    masterEls.style.width = '24vmin';
+    masterEls.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+    document.querySelector('#mindflayer').innerText = 'Challenge the MINDFLAYER!';
     init(4);
+    clueEls.forEach(function(el){
+        el.setAttribute('id', '');
+        el.childNodes.forEach(function(childEl){
+            childEl.setAttribute('id', '');
+        })
+    })
 }
 //<---render functions
