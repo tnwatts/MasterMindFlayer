@@ -114,7 +114,11 @@ function layoutPegs() {
             peg.setAttribute('class','empty');
             el.appendChild(peg);
         }
-        if (difficulty === 5) el.setAttribute('id','flayer-cells');
+        if (difficulty === 5) {
+            el.setAttribute('id','flayer-cells');
+        } else {
+            el.setAttribute('id', '');
+        }
     });
     removeAllChildren(masterEls);
     for(i=0; i<difficulty; i++) {

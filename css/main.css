@@ -69,12 +69,16 @@ main>div {
     border-radius: 10%;
 }
 #flayer-cells {
-    background: linear-gradient(0.24turn, #67273aed, #4d518fbd, #c2ab92bd); */
+    background: linear-gradient(0.24turn, #67273aed, #4d518fbd, #c2ab92bd);
     border: 2px solid rgba(19, 54, 56, 0.822);
 }
 
 #master-cell {
     background: linear-gradient(0.24turn, #4e2a13b1, #60c26da3, #5e4635c3);
+}
+.flayer-code-cell {
+    background: linear-gradient(0.24turn, #2b3183, #d4b38fa4, #80354bce);
+
 }
 
 side>div {
@@ -92,6 +96,11 @@ side {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     padding: 0.4vmin 1.2vmin;
+}
+
+#flayer-side {
+    /* background: linear-gradient(to top right,  #511f34e3,#376f71ad, #1a3d29da); */
+    /* box-shadow: 0.4vmin 0.4vmin 0.4vmin 0.4vmin rgba(7, 28, 30, 0.811); */
 }
 
 .greeting {
@@ -283,9 +292,7 @@ side {
     gap: 5%;
     transition: width 2s;
 }
-#slayer-peg-cell {
 
-}
 peg {
     border-radius: 50%;
     width: 90%;
