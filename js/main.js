@@ -114,6 +114,7 @@ function layoutPegs() {
             peg.setAttribute('class','empty');
             el.appendChild(peg);
         }
+        if (difficulty === 5) el.setAttribute('id','flayer-cells');
     });
     removeAllChildren(masterEls);
     for(i=0; i<difficulty; i++) {
@@ -206,6 +207,9 @@ function handleGreeting (evt) {
         
     } else {
         greetingContainer.classList.value = 'greeting-rules';
+        if (difficulty===5) {
+            document.querySelector('.greeting-rules').setAttribute('id','flayer-rules');
+        }
         greetingEl.innerText = "";
         rulesEl.innerText = "You must guess the code.\nThe code is 4 unique pegs.\nYou have 10 guesses.\nBlack clue pegs indicate a peg\n is the correct color and\n in the correct position.\nA white peg indicates\nonly a correct color.\nThe orientation of the black and white pegs does not indicate which colored peg is correct.";
     }
@@ -213,29 +217,20 @@ function handleGreeting (evt) {
 }
 
 function handleMindflayer(){
+    let bg = 'background:radial-gradient(circle at 50% 50%,  #807b4fb5 2%, #aa9883c3 50%, #562d42f2 100%)';
     if(difficulty === 5) return turnOffMF();
-    backEl.style.opacity = '1';
+    backEl.style.opacity = '1'; //brings up mindflayer image
     //change background color/styling for everything, body/message boxs/selector boxes/buttons
-    //increase containers 
+
+    //begin pegboard transformation
     guessEls.forEach(function(el){
         el.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
     })
     guessEls.forEach(function(el){
         el.style.width = '30vmin';
     })
-    // clueEls.forEach(function(el){
-    //     el.style.width = '100%';
-    // // })
-    // clueEls.forEach(function(el){
-    //     el.setAttribute('id', 'flexClue');
-    //     el.childNodes.forEach(function(childEl){
-        //         childEl.setAttribute('id', 'emptyFlex');
-        //     })
-        // })
-    document.getElementById('empty').style.backgroundImage = 'url("https://cdn.shopify.com/s/files/1/1432/8830/products/mindflayertrophyhead-shopify_1024x1024.jpg?v=1656489737")';
     masterEls.style.width = '30vmin';
     masterEls.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
-    document.querySelector('#mindflayer').innerText = 'Run Away!';
     if(difficulty === 4) init(5);
     clueEls.forEach(function(el){
         el.setAttribute('id', 'flexClue');
@@ -243,6 +238,19 @@ function handleMindflayer(){
             childEl.setAttribute('id', 'emptyFlex');
         })
     })
+    document.getElementById('empty').style.backgroundImage = 'url("https://cdn.shopify.com/s/files/1/1432/8830/products/mindflayertrophyhead-shopify_1024x1024.jpg?v=1656489737")';
+    
+
+
+    //begin message box transformation
+    document.querySelector('.status').setAttribute('id','status-flayer');
+    document.querySelector('.greeting > div').setAttribute('id', 'title');
+    document.querySelector('.greeting').setAttribute('id','greeting-flayer');
+    document.querySelector('.greeting > a').setAttribute('id','flayer-click');
+
+    
+    
+    document.querySelector('#mindflayer').innerText = 'Run Away!';
 }
 //<---handler functions
 
@@ -273,14 +281,19 @@ function turnOffMF() {
         // })
         masterEls.style.width = '24vmin';
         masterEls.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
-    document.getElementById('empty').style.backgroundImage = 'url("https://w7.pngwing.com/pngs/737/396/png-transparent-mastermind-how-to-think-like-sherlock-holmes-221b-baker-street-his-last-bow-book-book-microphone-monochrome-sticker-thumbnail.png")';
-    document.querySelector('#mindflayer').innerText = 'Challenge the MINDFLAYER!';
-    init(4);
-    clueEls.forEach(function(el){
-        el.setAttribute('id', '');
-        el.childNodes.forEach(function(childEl){
-            childEl.setAttribute('id', '');
+        document.getElementById('empty').style.backgroundImage = 'url("https://w7.pngwing.com/pngs/737/396/png-transparent-mastermind-how-to-think-like-sherlock-holmes-221b-baker-street-his-last-bow-book-book-microphone-monochrome-sticker-thumbnail.png")';
+        document.querySelector('#mindflayer').innerText = 'Challenge the MINDFLAYER!';
+        init(4);
+        clueEls.forEach(function(el){
+            el.setAttribute('id', '');
+            el.childNodes.forEach(function(childEl){
+                childEl.setAttribute('id', '');
+            })
         })
-    })
+    document.querySelector('.status').setAttribute('id','');
+    document.querySelector('.greeting > div').setAttribute('id', '');
+    document.querySelector('.greeting').setAttribute('id','');
+    document.querySelector('.greeting > a').setAttribute('id','');
 }
-//<---render functions
+    
+    //<---render functions
