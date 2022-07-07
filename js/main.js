@@ -78,7 +78,7 @@ function render() {
         trackerEls[roundsLeft].textContent = '';
         trackerEls[roundsLeft-1].textContent = `<--Turn: ${10-(--roundsLeft)}`;
         roundChanged = false;
-        //if (difficulty === 4 && roundsLeft === 7 && isCheater()){gameStatus = 'W'};
+        if (difficulty === 4 && roundsLeft === 7 && isCheater()){gameStatus = 'W'};
     }
 
     if(gameStatus === 'W'){

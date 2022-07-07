@@ -148,7 +148,7 @@ side {
     padding: 3vmin;
 }
 #flayer-rules {
-    background: radial-gradient(circle at 50% 50%, #bacbcbb5 2%, #7bc7cad9 50%, #2a2d5fcf 100%); 
+    background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #85614a 2%, rgba(196, 210, 119, 0.648) 50%, #7e3f6adb 100%);
     text-shadow: 0.2vmin 0.2vmin 0.2vmin rgb(140, 172, 161);
     color: #641c39dc;
 }
