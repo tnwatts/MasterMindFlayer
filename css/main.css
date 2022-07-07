@@ -104,51 +104,40 @@ side {
 }
 
 .greeting {
+    
     position: absolute;
-    margin-top: -50vmin;
-    background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #898072 2%, rgba(105, 140, 105, 0.648) 50%, #484128db 100%);
-    right: 67%;
+    
+    background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #85614a 2%, rgba(196, 210, 119, 0.648) 50%, #7e3f6adb 100%);
+    
     text-align: center;
+    font-size: 2.3vmin;
     box-shadow: 1vmin 1vmin 1vmin #230c0cd5;
     border-radius: 25%;
     padding: 3vmin;
-}
-#greeting-flayer {
-    background: radial-gradient(circle at 50% 50%, #bacbcbb5 2%, #70bec1b8 50%, #20224ddb 100%);
+    
 }
 
-.greeting>div {
-    font-weight: 900;
-    color: #acb57de7;
-    font-family: 'BioRhyme', serif;
-    font-size: 3.5vmin;
-    text-align: center;
-    text-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(7, 34, 25, 0.857);
-}
 #title {
     color: #79153db7;
     text-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(55, 116, 107, 0.857);
 }
 
-.greeting>a {
-    font-family: 'BioRhyme', serif;
-    font-weight: 500;
-    font-size: 2vmin;
-    color: #d0d7acf3;
-}
 #flayer-click {
     color: #8d1e4ad9;
 }
 
-.greeting-rules {
+.greeting-rules{
+    font-size: 1.8vmin;
+}
+
+.rules {
     transition: .5s;
-    width: 40vmin;
-    height: 40vmin;
+    width: 30vmin;
+    height: 30vmin;
     position: absolute;
     margin-top: -40vmin;
     text-align: center;
     color: #d0d7acf3;
-    right: 67%;
     font-weight: 500;
     font-size: 2vmin;
     font-family: 'BioRhyme', serif;
@@ -160,7 +149,7 @@ side {
 }
 #flayer-rules {
     background: radial-gradient(circle at 50% 50%, #bacbcbb5 2%, #7bc7cad9 50%, #2a2d5fcf 100%); 
-    text-shadow: 0.2vmin 0.2vmin 0.2vmin rgba(63, 98, 86, 0.857);
+    text-shadow: 0.2vmin 0.2vmin 0.2vmin rgb(140, 172, 161);
     color: #641c39dc;
 }
 .status {
@@ -170,7 +159,7 @@ side {
     top: 10%;
     text-align: center;
     
-    color: #d0d7acf3;
+    color: #d0d7ac;
     left: 64%;
     font-weight: 500;
     font-size: 2.4vmin;
@@ -184,8 +173,8 @@ side {
     padding: 3vmin;
 }
 #status-flayer {
-    color: #76d8f0de;
-    text-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(7, 34, 25, 0.857);
+    color: #14c7f4;
+    text-shadow: 0.3vmin 0.1vmin 0.2vmin rgba(7, 34, 25, 0.857);
     background: radial-gradient(circle at 50% 50%,  #807b4fb5 2%, #aa9883c3 50%, #562d42f2 100%);
 }
 
@@ -247,9 +236,22 @@ side {
     box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
 }
 
+#black-f {
+    background: radial-gradient(circle at 65% 15%, rgb(220, 211, 211) 1px, rgb(82, 82, 82) 3%, rgb(0, 0, 0) 60%, rgb(220, 200, 200) 100%);
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
+    height: 30%;
+    width: 28%;
+}
+
 #white {
     background: radial-gradient(circle at 65% 15%, white 4px, white 3%, rgb(146, 146, 146) 60%, white 100%);
     box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
+}
+#white-f {
+    background: radial-gradient(circle at 65% 15%, white 4px, white 3%, rgb(146, 146, 146) 60%, white 100%);
+    box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
+    height: 30%;
+    width: 28%;
 }
 
 .peg-cell-clue {
@@ -265,13 +267,12 @@ side {
     transition: width 2s;
 }
 #flexClue {
-
-    background: linear-gradient(0.24turn, #67273aed, #4d518fbd, #c2ab92bd); */
+    background: linear-gradient(0.24turn, #67273aed, #4d518fbd, #c2ab92bd); 
     border: 2px solid rgba(19, 54, 56, 0.822);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     padding: 0;
     padding-left: 0;
@@ -297,6 +298,23 @@ peg {
     border-radius: 50%;
     width: 90%;
     height: 90%;
+}
+rule {
+    color: #511b10;
+    font-weight: 900;
+    font-size: 2vmin;
+    font-family: 'BioRhyme', serif;
+    text-shadow: 0.1vmin 0.1vmin 0.1vmin rgb(255, 255, 255);
+    position: absolute;
+    margin-top: -50vmin;
+    background: radial-gradient(circle at 50% 50%, #323e72 1px, #4a8085 2%, rgba(196, 210, 119, 0.648) 50%, #663f7edb 100%);
+    right: 64%;
+    text-align: center;
+    box-shadow: 1vmin 1vmin 1vmin #230c0cd5;
+    border-radius: 25%;
+    padding: 3vmin;
+    transition: .5s;
+    max-width: 30vmin;
 }
 
 .empty {

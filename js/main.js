@@ -23,8 +23,8 @@ const guessEls = document.querySelectorAll('.peg-cell-guess');
 const clueEls = document.querySelectorAll('.peg-cell-clue');
 const masterEls = document.querySelector('.master-cell');
 const trackerEls = document.querySelectorAll('.tracker');
-const greetingContainer = document.querySelector('.greeting');
-const greetingEl = document.querySelector('.greeting > div');
+const greetingContainer = document.querySelector('rule');
+// const greetingEl = document.querySelector('.greeting > div');
 const rulesEl = document.querySelector('.greeting > a');
 const warningEl = document.querySelector('.warning');
 const backEl = document.querySelector('.background-container');
@@ -55,6 +55,9 @@ function init(int) {
 
 //init functions--->
 function render() {
+    clues = clues.filter(function(el){
+        return (el != undefined);
+    })
     for(i=0; i<difficulty ; i++){
         //render guesses
         if (i<currentGuess.length){
@@ -66,13 +69,16 @@ function render() {
         if (i<clues.length){
             clueEls[roundsLeft].children[i].setAttribute('id', `${clues[i]}`);
         } else {
-            clueEls[roundsLeft].children[i].setAttribute('id', '');
+             if(difficulty ===4 ) clueEls[roundsLeft].children[i].setAttribute('id', '');
+             if (difficulty === 5) clueEls[roundsLeft].children[i].setAttribute('id', 'emptyFlex');
         }
+           
     }
     if (roundChanged && (!(!!gameStatus))){
         trackerEls[roundsLeft].textContent = '';
         trackerEls[roundsLeft-1].textContent = `<--Turn: ${10-(--roundsLeft)}`;
         roundChanged = false;
+        //if (difficulty === 4 && roundsLeft === 7 && isCheater()){gameStatus = 'W'};
     }
 
     if(gameStatus === 'W'){
@@ -83,10 +89,10 @@ function render() {
         document.querySelector('.status').innerText = 'You Lost!'
         revealMasterCode();
     }else {
-        document.querySelector('.status').innerText = 'Game On!'
-        
+        document.querySelector('.status').innerText = 'Game On!' 
     }
 }
+
 function randomUniquePegs(length){
     let rando;
     let uniqueArr = new Array(length).fill('');
@@ -109,25 +115,36 @@ function layoutPegs() {
     let allEls = [...guessEls, ...clueEls];
     allEls.forEach(function(el){
         removeAllChildren(el);                      //need to remove all children for games after the first
-        for(i = 0; i <difficulty; i++) {
+        for(i = 0; i <difficulty; i++) {            //then create the ammount of pegs needed
             let peg = document.createElement('peg');
             peg.setAttribute('class','empty');
             el.appendChild(peg);
         }
-        if (difficulty === 5) {
-            el.setAttribute('id','flayer-cells');
-        } else {
-            el.setAttribute('id', '');
+        if (difficulty === 5 && el.classList === 'peg-cell-clue') {   //apply the right type of styling for the difficulty mode
+            el.setAttribute('id','flexClue');
+            
+        } 
+            
+        if (difficulty === 5 && el.classList !== 'peg-cell-clue') { 
+            el.setAttribute('id', 'flayer-new-game');
+            
         }
-    });
+         if (difficulty === 4 && el.classList === 'peg-cell-clue') {   //apply the right type of styling for the difficulty mode
+            el.setAttribute('id',''); 
+         } 
+         if (difficulty === 4 && el.classList !== 'peg-cell-clue') {   //apply the right type of styling for the difficulty mode
+            el.setAttribute('id','');
+            
+        }  
+    })
     removeAllChildren(masterEls);
     for(i=0; i<difficulty; i++) {
         let peg = document.createElement('peg');
         peg.setAttribute('class' , 'mystery');
         peg.textContent = '?';
         masterEls.appendChild(peg);
-        //console.log(masterEls);
     }
+    if (difficulty ===5) flayerBoard();
 }
 //<---init functions
 
@@ -155,13 +172,17 @@ function handleSubmitGuess(){
         if(masterCopy.includes(peg)){
             whitePegCount++;
             masterCopy = masterCopy.filter((el) => el !== peg);
-            
         }
     })
-    
-    clues = Array(difficulty).fill('black', 0 , blackPegCount);
-    clues.fill('white' , blackPegCount , (blackPegCount + whitePegCount));
-    
+    if (difficulty === 4){
+        clues = Array(difficulty).fill('black', 0 , blackPegCount);
+        clues.fill('white' , blackPegCount , (blackPegCount + whitePegCount));
+    }
+    if (difficulty === 5){
+        clues = Array(difficulty).fill('black-f', 0 , blackPegCount);
+        clues.fill('white-f' , blackPegCount , (blackPegCount + whitePegCount));
+    }
+
     if (blackPegCount >= difficulty) {
         gameStatus = 'W';
     } else if(roundsLeft < 1) {
@@ -206,18 +227,37 @@ function handleGreeting (evt) {
     // console.log(spanNode);
     if (greetingContainer.classList.value === 'greeting-rules'){
         greetingContainer.classList.value = 'greeting';
-        greetingEl.innerText = "MasterMind!";
-        rulesEl.innerText = "Click here for rules";
+        greetingContainer.innerText = "MasterMind!";
+        greetingContainer.innerText = "Click here for rules";
         
     } else {
         greetingContainer.classList.value = 'greeting-rules';
         if (difficulty===5) {
             document.querySelector('.greeting-rules').setAttribute('id','flayer-rules');
         }
-        greetingEl.innerText = "";
-        rulesEl.innerText = "You must guess the code.\nThe code is 4 unique pegs.\nYou have 10 guesses.\nBlack clue pegs indicate a peg\n is the correct color and\n in the correct position.\nA white peg indicates\nonly a correct color.\nThe orientation of the black and white pegs does not indicate which colored peg is correct.";
+        greetingContainer.innerText = "";
+        greetingContainer.innerText = "You must guess the code. The code is 4 unique pegs. You have 10 guesses.Black clue pegs indicate a peg\n is the correct color and in the correct position.A white peg indicates only a correct color.The orientation of the black and white pegs does not indicate which colored peg is correct.";
     }
     // check which class it is and either add rules text or remove rules text   
+}
+ 
+function flayerBoard(){
+    guessEls.forEach(function(el){
+        el.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
+    })
+    guessEls.forEach(function(el){
+        el.style.width = '30vmin';
+    })
+    masterEls.style.width = '30vmin';
+    masterEls.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
+    if(difficulty === 4) init(5);
+    clueEls.forEach(function(el){
+        el.setAttribute('id', 'flexClue');
+        el.childNodes.forEach(function(childEl){
+            childEl.setAttribute('id', 'emptyFlex');
+        })
+    })
+
 }
 
 function handleMindflayer(){
@@ -242,15 +282,18 @@ function handleMindflayer(){
             childEl.setAttribute('id', 'emptyFlex');
         })
     })
+
+
+
     document.getElementById('empty').style.backgroundImage = 'url("https://cdn.shopify.com/s/files/1/1432/8830/products/mindflayertrophyhead-shopify_1024x1024.jpg?v=1656489737")';
     
 
 
     //begin message box transformation
     document.querySelector('.status').setAttribute('id','status-flayer');
-    document.querySelector('.greeting > div').setAttribute('id', 'title');
-    document.querySelector('.greeting').setAttribute('id','greeting-flayer');
-    document.querySelector('.greeting > a').setAttribute('id','flayer-click');
+    // document.querySelector('.greeting > div').setAttribute('id', 'title');
+    // document.querySelector('.greeting').setAttribute('id','greeting-flayer');
+    // document.querySelector('.greeting > a').setAttribute('id','flayer-click');
     document.querySelector('.master-cell').setAttribute('id', 'flayer-code-cell');
     document.querySelector('side').setAttribute('id','flayer-side');
     document.querySelector('.new-game').setAttribute('id','flayer-new-game');
@@ -274,6 +317,12 @@ function displayWarning(str) {
     setTimeout(function () { warningEl.style.opacity = '0';}, 5000);
 }
 function turnOffMF() {
+    document.querySelector('.status').setAttribute('id','');
+    document.querySelector('.master-cell').setAttribute('id', '');
+    document.querySelector('side').setAttribute('id','');
+    document.querySelector('.new-game').setAttribute('id','');
+    
+    document.querySelector('#mindflayer').innerText = 'Challenge the MINDFLAYER!';
     backEl.style.opacity = '0';
     guessEls.forEach(function(el){
         el.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
@@ -282,13 +331,9 @@ function turnOffMF() {
     guessEls.forEach(function(el){
         el.style.width = '24vmin';
     })
-    // clueEls.forEach(function(el){
-        //     el.style.width = '6vmin';
-        // })
         masterEls.style.width = '24vmin';
         masterEls.style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
         document.getElementById('empty').style.backgroundImage = 'url("https://w7.pngwing.com/pngs/737/396/png-transparent-mastermind-how-to-think-like-sherlock-holmes-221b-baker-street-his-last-bow-book-book-microphone-monochrome-sticker-thumbnail.png")';
-        document.querySelector('#mindflayer').innerText = 'Challenge the MINDFLAYER!';
         init(4);
         clueEls.forEach(function(el){
             el.setAttribute('id', '');
@@ -296,13 +341,18 @@ function turnOffMF() {
                 childEl.setAttribute('id', '');
             })
         })
-    document.querySelector('.status').setAttribute('id','');
-    document.querySelector('.greeting > div').setAttribute('id', '');
-    document.querySelector('.greeting').setAttribute('id','');
-    document.querySelector('.greeting > a').setAttribute('id','');
-    document.querySelector('.master-cell').setAttribute('id', '');
-    document.querySelector('side').setAttribute('id','');
-    document.querySelector('.new-game').setAttribute('id','');
 }
     
     //<---render functions
+
+function isCheater () {
+    let browns = 0;
+    for( i=9 ; i>7 ; i--) {
+        guessEls[i].childNodes.forEach( function(el){
+            if(el.id === 'brown'){
+                browns++;
+        }
+    }) 
+    }
+    if (browns === 8) return true;
+}
