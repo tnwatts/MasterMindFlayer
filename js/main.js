@@ -183,7 +183,7 @@ function layoutPegs() {
 
         }
     })
-    
+
     removeAllChildren(masterEls);
     for (i = 0; i < difficulty; i++) {                  
         let peg = document.createElement('peg');
@@ -237,9 +237,9 @@ function handleSubmitGuess() {
     }
 
     roundChanged = true;
-    if (arrayEquals(currentGuess, timewarpCost)) { timewarp() };
-    if (arrayEquals(currentGuess, intuitionCost)) { intuition() };
     render();
+    if (arrayEquals(currentGuess, intuitionCost)) { intuition() };
+    if (arrayEquals(currentGuess, timewarpCost)) { timewarp() };
     clues = [];
     currentGuess = [];
 }
@@ -396,23 +396,30 @@ function isCheater() {
 }
 function timewarp() {
     if (difficulty !== 5)return;
+    if (roundsLeft > 7 ) return displayWarning('Too soon to cast');
     if (useTimeWarp > 0) return displayWarning('Out of casts');
-    if (roundsLeft > 7) return displayWarning('Too soon to cast');
     
     roundsLeft = roundsLeft + 2;
+
+    clueEls[roundsLeft].childNodes.forEach( el => el.id = 'emptyFlex');
+    guessEls[roundsLeft].childNodes.forEach( el => el.id = '');
+    clueEls[roundsLeft-1].childNodes.forEach( el => el.id = 'emptyFlex');
+    guessEls[roundsLeft-1].childNodes.forEach( el => el.id = '');
     useTimeWarp++
 }
 function intuition () {
     if (difficulty !== 5) return;
     if (roundsLeft > 8) return displayWarning('Too Soon to cast')
     if (useIntuition > 0) return displayWarning('Out of Casts');
+    
+    
+    roundsLeft = roundsLeft + 1;
+    clueEls[roundsLeft].childNodes.forEach( el => el.id = 'emptyFlex');
+    guessEls[roundsLeft].childNodes.forEach( el => el.id = '');
 
     let found = false;
     for( i = 0 ; i < (difficulty-1) ; i++){
         if (found) return;
-        console.log(guessEls[roundsLeft+1].childNodes[i].id);
-        console.log(masterCode[i]);
-        console.log(guessEls[roundsLeft+1].childNodes[i].id === masterCode[i]);
         if ( (guessEls[roundsLeft+1].childNodes[i].id === masterCode[i]) && (guessEls[roundsLeft+1].childNodes[i+1].id !== masterCode[i+1]) ){
             guessEls[roundsLeft+1].childNodes[i].style.border = '2px solid yellow';
             guessEls[roundsLeft+1].childNodes[i+1].style.border = '2px solid yellow';

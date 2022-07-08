@@ -1,0 +1,77 @@
+Taylor Watts - Master MindFlayer
+
+Master Mind is a grid structure with nested grids
+	-10 rows for guesses, 1 for the final revealed solution, and a side grid structure for each row of guesses that show correct colors/placement
+	-a seperate standalone grid to hold the color options and a submit button
+	-bottom row for new game button 
+
+1) Define required constants
+	-array that holds all peg colors
+	
+
+2) Define required variables used to track the state of the game
+	-current winning pattern
+	-current player guess
+	-guess feed back pattern
+	-gameStatus
+	
+3) Store elements on the page that will be accessed in code more than once in variables to make code more concise, readable and performant.
+	-reference to each div that can hold guesses
+	-reference to each div that shows guess feedback
+	-refernce to div that holds masterminds picks
+
+
+4) Upon loading the app should:
+	4.1) Initialize the state variables
+			-set all guesses to blank
+			-set all feedback slots to blank
+			-set Masterminds picks to blank
+	4.2) Render those values to the page
+
+	4.3) Wait for the user to click a button
+			
+
+5) Handle a player clicking play button
+	-initiate the randomization of MasterMind Picks
+		-update display to show mystery pegs
+	-change game state to playing
+		-update display to indicate a game is in progress
+	-wipe all guess cells, and guess feedback cells
+		
+
+6) Handle a player clicking a peg selection
+	-check if guess slots are full
+		-if full give feedback message indicating full, return
+	-assign that selection to the next open guess slot, from left to right
+		-update display
+	
+7) Handle a player clicking the submit guess button
+	-clear guess feedback array
+	-compare guess array to masterminds array
+		-if right color
+			-if right spot
+				-add TrueCorrect guess peg to guess feedback array
+			-add ColorCorrect guess peg to guess feedback array
+		-if guessfeedback array has 4 TrueCorrect change gamestate to winner
+	-update display
+
+8) Handle a click on the battle mindFlayer button after victory
+	-change background image
+	-change color of all divs, message boxs, selector, guess slots
+	-increase difficulty
+	-reinitialize with new difficulty
+	-add health bars
+	-play music
+
+
+	-----
+	COLORS : dark red #562D42
+	skyish yellow #C6B39D
+	blackish blue #222A2C
+	energy teal #69B7B9
+	cape green #524F35
+	reflection blue #BACBCB
+	cave rock pink #875468
+	cave wall blue #20224D
+	lake teal #6FB98E
+	flayer red #3A131F
