@@ -425,6 +425,11 @@ function intuition () {
             guessEls[roundsLeft+1].childNodes[i+1].style.border = '2px solid yellow';
             found = true;
         }
+        if ( (guessEls[roundsLeft+1].childNodes[i+1].id === masterCode[i+1]) && (guessEls[roundsLeft+1].childNodes[i].id !== masterCode[i]) ){
+            guessEls[roundsLeft+1].childNodes[i].style.border = '2px solid yellow';
+            guessEls[roundsLeft+1].childNodes[i+1].style.border = '2px solid yellow';
+            found = true;
+        }
     }
     useIntuition++;
 }

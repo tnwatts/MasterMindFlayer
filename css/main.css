@@ -475,10 +475,10 @@ weirdly in firefox and needs its own settings*/
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 2fr 1fr 1fr 2fr 1fr;
     border : 2px solid black;
-    width: 39vmin;
+    width: 41vmin;
     height: 32vmin;
     background: linear-gradient(0.24turn, #67273af0, #4d518fd4, #c2ab92db); 
-    padding: 1vmin 1vmin 2vmin 1vmin;
+    padding: 1vmin 0 2vmin 0;
     text-shadow: 0.2vmin 0.2vmin 0.2vmin rgba(0, 0, 0, 0.688);
     border-radius: 15px;
     box-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(0, 0, 0, 0.594);
