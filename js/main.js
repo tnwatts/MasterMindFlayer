@@ -53,7 +53,6 @@ const clueEls = document.querySelectorAll('.peg-cell-clue');
 const masterEls = document.querySelector('.master-cell');
 const trackerEls = document.querySelectorAll('.tracker');
 const greetingContainer = document.querySelector('rule');
-// const greetingEl = document.querySelector('.greeting > div');
 const rulesEl = document.querySelector('.greeting > a');
 const warningEl = document.querySelector('.warning');
 const backEl = document.querySelector('.background-container');
@@ -75,7 +74,7 @@ function init(int) {
     lvl2audio.currentTime = 0;
     gameStatus = null;
     difficulty = int;
-    if(difficulty === 5) {
+    if (difficulty === 5) {
         lvl2audio.play();
         lvl2audio.loop = true;
     }
@@ -122,9 +121,7 @@ function render() {
     if (gameStatus === 'W') {
         document.querySelector('.status').innerText = 'You Won!'
         document.getElementById('mindflayer').style.opacity = '1';
-
         revealMasterCode();
-        //add mindFlayer button
     } else if (gameStatus === 'L') {
         document.querySelector('.status').innerText = 'You Lost!'
         revealMasterCode();
@@ -153,7 +150,6 @@ function randomUniquePegs(length) {
     return uniqueArr;
 }
 
-
 function removeAllChildren(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
@@ -173,7 +169,6 @@ function layoutPegs() {
             el.setAttribute('id', 'flexClue');
 
         }
-
         if (difficulty === 5 && el.classList !== 'peg-cell-clue') {
             el.setAttribute('id', 'flayer-new-game');
 
@@ -193,6 +188,7 @@ function layoutPegs() {
         peg.textContent = '?';
         masterEls.appendChild(peg);
     }
+
     if (difficulty === 5) flayerBoard();
 }
 //<---init functions
@@ -217,7 +213,6 @@ function handleSubmitGuess() {
     masterCopy = masterCopy.filter((el) => el !== null);
     guessCopy = guessCopy.filter((el) => el !== null);
 
-
     guessCopy.forEach(function (peg, idx) {
         if (masterCopy.includes(peg)) {
             whitePegCount++;
@@ -240,8 +235,8 @@ function handleSubmitGuess() {
     }
 
     roundChanged = true;
-    if (arrayEquals(currentGuess,timewarpCost)) {timewarp()};
-    if (arrayEquals(currentGuess,intuitionCost)) {intuition()};
+    if (arrayEquals(currentGuess, timewarpCost)) { timewarp() };
+    if (arrayEquals(currentGuess, intuitionCost)) { intuition() };
     render();
     clues = [];
     currentGuess = [];
@@ -250,7 +245,7 @@ function handleSubmitGuess() {
 function handlePegRemover() {
     if (!!gameStatus) return displayWarning('Press New Game!');
     if (currentGuess.length === 0) return displayWarning('Empty Row!'); //need change this
-    currentGuess.pop(); 
+    currentGuess.pop();
     playRandomAudio().play();
     render();
 }
@@ -313,7 +308,7 @@ function handleMindflayer() {
     let bg = 'background:radial-gradient(circle at 50% 50%,  #807b4fb5 2%, #aa9883c3 50%, #562d42f2 100%)';
     if (difficulty === 5) return turnOffMF();
     backEl.style.opacity = '1'; //brings up mindflayer image
-   
+
     guessEls.forEach(function (el) {
         el.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
     })
@@ -351,7 +346,7 @@ function displayWarning(str) {
     if (difficulty === 5) {
         document.querySelector('.tracker-container').style.opacity = '1';
         trackerEls[roundsLeft].style.opacity = '0';
-        setTimeout(function () {document.querySelector('.tracker-container').style.opacity = '0';} , 5000);
+        setTimeout(function () { document.querySelector('.tracker-container').style.opacity = '0'; }, 5000);
     }
     setTimeout(function () { warningEl.style.opacity = '0'; }, 5000);
     warningEl.innerText = str;
@@ -397,25 +392,52 @@ function isCheater() {
     }
     if (browns === 8) return true;
 }
-function timewarp () {
+function timewarp() {
+    if (difficulty !== 5)return;
     if (useTimeWarp > 0) return displayWarning('Out of casts');
     if (roundsLeft > 7) return displayWarning('Too soon to cast');
-    roundsLeft = roundsLeft+2;
+    roundsLeft = roundsLeft + 2;
     useTimeWarp++
-    //clear rounds
 }
 function intuition () {
+    if (difficulty !== 5) return;
+//create array out of last rounds pegs
+    // let singleMatch = false;
+    let found = false;
+    for( i = 0 ; i < (difficulty-1) ; i++){
+        if (found) return;
+        console.log(guessEls[roundsLeft+1].childNodes[i].id);
+        console.log(masterCode[i]);
+        console.log(guessEls[roundsLeft+1].childNodes[i].id === masterCode[i]);
+        if ( (guessEls[roundsLeft+1].childNodes[i].id === masterCode[i]) && (guessEls[roundsLeft+1].childNodes[i+1].id !== masterCode[i+1]) ){
+            guessEls[roundsLeft+1].childNodes[i].style.border = '2px solid yellow';
+            guessEls[roundsLeft+1].childNodes[i+1].style.border = '2px solid yellow';
+            found = true;
+        }
+    }
+    // guessEls[roundsLeft+1].childNodes.forEach(function(el , idx) {
+    //     if (idx === 0) return;
+    //     if(el.id === masterCode[idx] && guessEls[roundsLeft+1].childNodes[idx+1].id !== masterCode[idx+1]){
+    //         el.style.border = '2px solid yellow';
+    //         guessEls[roundsLeft+1].childNodes[idx+1].style.border = '2px solid yellow';
+    //     }
+    // })
+}
+
+function highlight () {
 
 }
 function arrayEquals(a, b) {
+    if (a.length !== b.length) return false;
     let c = true;
-    a.forEach(function(el , idx){
-        if ( el !== b[idx]) {
+    
+    a.forEach(function (el, idx) {
+        if (el !== b[idx]) {
             c = false;
         }
-    }) 
+    })
     return c;
 }
-function playRandomAudio () {
+function playRandomAudio() {
     return audioArray[Math.floor(Math.random() * audioArray.length)];
 }
