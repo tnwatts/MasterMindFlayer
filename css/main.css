@@ -66,7 +66,7 @@ main {
 main>div {
     background: linear-gradient(0.24turn, #45331ce0, #517767, #8A7F71);
     border: 2px solid black;
-    border-radius: 10%;
+    border-radius: 15px;
 }
 #flayer-cells {
     background: linear-gradient(0.24turn, #67273aed, #4d518fbd, #c2ab92bd);
@@ -107,7 +107,7 @@ side {
     
     position: absolute;
     
-    background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #85614a 2%, rgba(196, 210, 119, 0.648) 50%, #7e3f6adb 100%);
+    background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #30947B 2%, rgba(196, 210, 119, 0.648) 50%, #5c3245db 100%);
     
     text-align: center;
     font-size: 2.3vmin;
@@ -156,7 +156,7 @@ side {
     transition: .5s;
     width: 20vmin;
     position: absolute;
-    top: 10%;
+    top: 19%;
     text-align: center;
     
     color: #d0d7ac;
@@ -168,10 +168,40 @@ side {
     /* text-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(7, 34, 25, 0.857); */
     /* background: radial-gradient(circle at 50% 50%,  #807b4fb5 2%, #aa9883c3 50%, #562d42f2 100%); */
     background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #898072 2%, rgba(105, 140, 105, 0.648) 50%, #484128db 100%);
+    
     box-shadow: 1vmin 1vmin 1vmin #230c0cd5;
     border-radius: 25%;
     padding: 3vmin;
 }
+
+#mindflayer {
+    position: absolute;
+    font-family: 'BioRhyme', serif;
+    opacity: 0;
+    transition: .5s;
+    top:30%;
+    left: 64%;
+    width:20vmin;    
+    /* background: linear-gradient(0.25turn, #4E7255, #2f6169ac, #91A853); */
+    /* background: linear-gradient(0.25turn, #305c45ba, #745025ac, #7d775c); */
+    /* background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #898072 2%, rgba(105, 140, 105, 0.648) 50%, #484128db 100%); */
+    background: linear-gradient(0.24turn, #45331cc1, #517767cd, #77574bc1);
+    
+    box-shadow: 0.8vmin 0.8vmin 0.8vmin rgba(0, 0, 0, 0.742);
+    /* border: 4px solid rgba(80, 11, 11, 0.822); */
+    border: none;
+    border-radius: 20px;
+    padding: 1vmin 1vmin;
+    color: rgba(243, 255, 167, 0.966);
+    /* text-shadow: 0.3vmin 0.2vmin 0.2vmin rgba(81, 80, 80, 0.857); */
+    text-shadow: 0.2vmin 0.2vmin 0.3vmin rgb(68, 21, 21);
+    font-size: 1.7vmin;
+    font-weight: 700;
+    font-weight: 500?;
+    text-align: center;
+    cursor: pointer;
+}
+
 #status-flayer {
     color: #14c7f4;
     text-shadow: 0.3vmin 0.1vmin 0.2vmin rgba(7, 34, 25, 0.857);
@@ -332,6 +362,7 @@ rule {
     grid-column: span 2;
     display: flex;
     justify-content: space-around;
+    
     align-items: center;
 }
 #flayer-new-game {
@@ -350,6 +381,7 @@ rule {
     background: linear-gradient(0.25turn, #305c45ba, #745025ac, #7d775c);
     border: none;
     border-radius: 15px;
+    
     box-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(0, 0, 0, 0.742);
 }
 
@@ -367,26 +399,9 @@ weirdly in firefox and needs its own settings*/
     border: none;
     border-radius: 15px;
     box-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(0, 0, 0, 0.742);
+    font-family: 'BioRhyme', serif;
 }
 
-#mindflayer {
-    position: absolute;
-    /* visibility: visible; */
-    transition: .5s;
-    bottom: 9vmin;
-    right: 52%;
-    width: 15vmin;    
-    background: linear-gradient(0.25turn, #305c45ba, #745025ac, #7d775c);
-    box-shadow: 0.8vmin 0.8vmin 0.4vmin rgba(0, 0, 0, 0.742);
-    border: none;
-    border-radius: 15px;
-    padding: 1vmin 1vmin;
-    color: rgb(255, 255, 255);
-    font-size: 1.7vmin;
-    font-weight: 500;
-    text-align: center;
-    cursor: pointer;
-}
 
 .ng-button:hover,
 .sub-button:hover,
@@ -425,9 +440,11 @@ weirdly in firefox and needs its own settings*/
 }
 
 .tracker-container {
+    opacity: 1;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     margin: 0 0 -4vmin 1vmin;
+    transition: opacity 0.2s;
 }
 
 .tracker {
@@ -442,9 +459,9 @@ weirdly in firefox and needs its own settings*/
 }
 
 .warning {
-    /* transition: .5s; */
+    transition: .2s;
     opacity: 0;
-    transition: opacity 2s ease-out;
+
     /* transition: visibility 0s 2s, opacity 2s linear; */
     width: 20vmin;
     margin-top: -2%;
@@ -463,4 +480,48 @@ weirdly in firefox and needs its own settings*/
     box-shadow: 1vmin 1vmin 1vmin #230c0cd5;
     border-radius: 25%;
     /* padding: 3vmin; */
+}
+.spells {
+    opacity : 0;
+    position: absolute;
+    transition: 1s;
+    top: 40%;
+    left: 59%;
+    display: grid;
+    gap: 2%;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr 1fr 1fr 2fr 1fr;
+    border : 2px solid black;
+    width: 41vmin;
+    height: 32vmin;
+    background: linear-gradient(0.24turn, #67273af0, #4d518fd4, #c2ab92db); 
+    padding: 1vmin 1vmin 2vmin 1vmin;
+    text-shadow: 0.2vmin 0.2vmin 0.2vmin rgba(0, 0, 0, 0.688);
+    border-radius: 15px;
+    box-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(0, 0, 0, 0.594);
+    color: rgb(248, 238, 189);
+}
+.spell-name {
+    text-align: center;
+    grid-column: span 5;
+    /* border : 2px solid black; */
+    font-family: 'BioRhyme', serif;
+    font-weight: 900;
+
+}
+.spell-description {
+    text-align: center;
+    grid-column: span 5;
+    /* column-span: all; */
+    /* border : 2px solid black; */
+    font-family: 'BioRhyme', serif;
+    font-size: 1.5vmin;
+    
+    
+}
+.spell-cost {
+    height: 80%;
+    width: 70%;
+    border-radius: 50%;
+    margin:0.2vmin 0 0 1vmin;
 }

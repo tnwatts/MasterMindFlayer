@@ -10,6 +10,7 @@
         <link rel='preconnect' href='https://fonts.googleapis.com'>
         <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
         <link href='https://fonts.googleapis.com/css2?family=BioRhyme&display=swap' rel='stylesheet'>
+        <audio src="/music/good_enough.mp3" autoplay></audio>
     </head>
     <body>
         <div class='background-container'></div>
@@ -17,6 +18,23 @@
             <!-- <h6>Master Mind will pick a code made up of four unique pegs, you have 10 guesses to get the code correct</h6> -->
             <div class='status'>Game On!</div>
             <button type='button' id='mindflayer'>Challenge the MINDFLAYER!</button>
+            <div class='spells'>
+                <a class='spell-name'>Timewarp</a>
+                <a class='spell-description'>(Brings you back in time 1 round)</a>
+                <div class='spell-cost' id='blue'></div>
+                <div class='spell-cost' id='blue'></div>
+                <div class='spell-cost' id='blue'></div>
+                <div class='spell-cost' id='green'></div>
+                <div class='spell-cost' id='blue'></div>
+                <a class='spell-name'>Intuition</a>
+                <a class='spell-description'>(Highlights 2 adjacent slots that have 1 black peg)</a>
+                <div class='spell-cost' id='green'></div>
+                <div class='spell-cost' id='yellow'></div>
+                <div class='spell-cost' id='red'></div>
+                <div class='spell-cost' id='yellow'></div>
+                <div class='spell-cost' id='green'></div>
+                <a class='spell-description'>Each spell has 1 use</a>
+            </div>
             <rule class='greeting'>
                 MasterMind!<br>
                 Click here for rules
