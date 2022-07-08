@@ -63,15 +63,3 @@ Master Mind is a grid structure with nested grids
 	-add health bars
 	-play music
 
-
-	-----
-	COLORS : dark red #562D42
-	skyish yellow #C6B39D
-	blackish blue #222A2C
-	energy teal #69B7B9
-	cape green #524F35
-	reflection blue #BACBCB
-	cave rock pink #875468
-	cave wall blue #20224D
-	lake teal #6FB98E
-	flayer red #3A131F
