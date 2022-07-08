@@ -20,7 +20,7 @@ lvl 3
 - JavaScript
 - HTML
 - CSS
-- CardStarter CSS Library
+- GOOGLE
 
 # Getting Started
 Defeat the Master Mind for a chance to battle the Mind Flayer!
@@ -29,7 +29,7 @@ Defeat the Master Mind for a chance to battle the Mind Flayer!
 # Next Steps
 
 - Next versions will have
-    -increased spell list
-    -more styling for level 1
-    -possibly a lvl 3
-    -a mock healthbar for both player and Mind Flayer that will be effected by the round and black peg count respectively
+- increased spell list
+- more styling for level 1
+- possibly a lvl 3
+- a mock healthbar for both player and Mind Flayer that will be effected by the round and black peg count respectively
