@@ -29,7 +29,8 @@ Defeat the Master Mind for a chance to battle the Mind Flayer!
 # Next Steps
 
 - Next versions will have
-- increased spell list
-- more styling for level 1
-- possibly a lvl 3
-- a mock healthbar for both player and Mind Flayer that will be effected by the round and black peg count respectively
+- Increased spell list
+- More styling for level 1
+- Possibly a lvl 3
+- A mock healthbar for both player and Mind Flayer that will be effected by the round and black peg count respectively
+- Responsive behavior imrpovements

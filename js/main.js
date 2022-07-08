@@ -380,7 +380,6 @@ function turnOffMF() {
         })
     })
 }
-
 //<---render functions
 
 function isCheater() {
@@ -394,6 +393,8 @@ function isCheater() {
     }
     if (browns === 8) return true;
 }
+
+//spell Functions--->
 function timewarp() {
     if (difficulty !== 5)return;
     if (roundsLeft > 7 ) return displayWarning('Too soon to cast');
@@ -407,6 +408,7 @@ function timewarp() {
     guessEls[roundsLeft-1].childNodes.forEach( el => el.id = '');
     useTimeWarp++
 }
+
 function intuition () {
     if (difficulty !== 5) return;
     if (roundsLeft > 8) return displayWarning('Too Soon to cast')
@@ -433,6 +435,7 @@ function intuition () {
     }
     useIntuition++;
 }
+//<---spell funtions
 
 function arrayEquals(a, b) {
     if (a.length !== b.length) return false;
