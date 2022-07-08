@@ -34,6 +34,7 @@ body2 {
     background-size: 100% 100%;
     transition: opacity 2s ease-out;
 }
+
 .background-container {
     position: absolute;
     background-image: url('https://cdn.wallpapersafari.com/55/24/3vzErZ.jpg');
@@ -45,6 +46,7 @@ body2 {
     width: 100%;
     z-index: -2;
 }
+
 main {
     margin: 0;
     margin-top: -3vmin;
@@ -64,6 +66,7 @@ main>div {
     border: 2px solid black;
     border-radius: 15px;
 }
+
 #flayer-cells {
     background: linear-gradient(0.24turn, #67273aed, #4d518fbd, #c2ab92bd);
     border: 2px solid rgba(19, 54, 56, 0.822);
@@ -72,6 +75,7 @@ main>div {
 .master-cell {
     background: linear-gradient(0.24turn, #4e2a13b1, #60c26da3, #5e4635c3);
 }
+
 #flayer-code-cell {
     background: linear-gradient(0.24turn, #2b3183, #d4b38fa4, #80354bce);
 
@@ -142,11 +146,13 @@ side {
     border-radius: 25%;
     padding: 3vmin;
 }
+
 #flayer-rules {
     background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #85614a 2%, rgba(228, 207, 113, 0.408) 50%, #4f1a3eb1 100%);
     text-shadow: 0.2vmin 0.2vmin 0.2vmin rgb(140, 172, 161);
     color: #2f0c1a;
 }
+
 .status {
     transition: .5s;
     width: 20vmin;
@@ -262,6 +268,7 @@ side {
     background: radial-gradient(circle at 65% 15%, white 4px, white 3%, rgb(146, 146, 146) 60%, white 100%);
     box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
 }
+
 #white-f {
     background: radial-gradient(circle at 65% 15%, white 4px, white 3%, rgb(146, 146, 146) 60%, white 100%);
     box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.742);
@@ -281,6 +288,7 @@ side {
     width: 6vmin;
     transition: width 2s;
 }
+
 #flexClue {
     background: linear-gradient(0.24turn, #67273aed, #4d518fbd, #c2ab92bd); 
     border: 2px solid rgba(19, 54, 56, 0.822);
@@ -314,6 +322,7 @@ peg {
     width: 90%;
     height: 90%;
 }
+
 rule {
     background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #85614a 2%, rgba(228, 207, 113, 0.408) 50%, #4f1a3eb1 100%);
     text-shadow: 0.2vmin 0.2vmin 0.2vmin rgb(140, 172, 161);
@@ -337,6 +346,7 @@ rule {
     background: radial-gradient(closest-side, #615e5e, #343930, #1d1a18);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 #emptyFlex {
         background: radial-gradient(closest-side, #615e5e, #343930, #1d1a18);
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -351,6 +361,7 @@ rule {
     
     align-items: center;
 }
+
 #flayer-new-game {
     background: linear-gradient(0.24turn, #67273aed, #4d518fbd, #c2ab92bd);
 }
@@ -387,7 +398,6 @@ weirdly in firefox and needs its own settings*/
     box-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(0, 0, 0, 0.742);
     font-family: 'BioRhyme', serif;
 }
-
 
 .ng-button:hover,
 .sub-button:hover,
@@ -453,6 +463,7 @@ weirdly in firefox and needs its own settings*/
     box-shadow: 1vmin 1vmin 1vmin #230c0cd5;
     border-radius: 25%;
 }
+
 .spells {
     opacity : 0;
     position: absolute;
@@ -473,18 +484,21 @@ weirdly in firefox and needs its own settings*/
     box-shadow: 0.4vmin 0.4vmin 0.4vmin rgba(0, 0, 0, 0.594);
     color: rgb(248, 238, 189);
 }
+
 .spell-name {
     text-align: center;
     grid-column: span 5;
     font-family: 'BioRhyme', serif;
     font-weight: 900;
 }
+
 .spell-description {
     text-align: center;
     grid-column: span 5;
     font-family: 'BioRhyme', serif;
     font-size: 1.5vmin;
 }
+
 .spell-cost {
     height: 80%;
     width: 70%;

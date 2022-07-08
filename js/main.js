@@ -45,6 +45,7 @@ let currentGuess; //array that holds the current player guesses data
 let masterCode; // array with the sequence the player has to guess, MASTERMINDS CODE
 let difficulty; //4 for standard mode, 5 for MINDFLAYER(icebox), this represents how many pegs make up masterminds code
 let useTimeWarp; // tracks how many time the spell has been cast
+let useIntuition; // track how many time the spell has been cast
 let clues; //array that holds the guess feed back clues
 /*----- cached element references -----*/
 const selectorEls = document.querySelectorAll('.selector');
@@ -81,6 +82,7 @@ function init(int) {
     roundsLeft = 9;
     roundChanged = false;
     useTimeWarp = 0;
+    useIntuition = 0;
     clues = [];
     currentGuess = [];
     masterCode = randomUniquePegs(difficulty);   //MASTERMIND IS PICKING HIS CODE HERE
@@ -109,8 +111,8 @@ function render() {
             if (difficulty === 4) clueEls[roundsLeft].children[i].setAttribute('id', '');
             if (difficulty === 5) clueEls[roundsLeft].children[i].setAttribute('id', 'emptyFlex');
         }
-
     }
+
     if (roundChanged && (!(!!gameStatus))) {
         trackerEls[roundsLeft].textContent = '';
         trackerEls[roundsLeft - 1].textContent = `<--Turn: ${10 - (--roundsLeft)}`;
@@ -181,14 +183,14 @@ function layoutPegs() {
 
         }
     })
+    
     removeAllChildren(masterEls);
-    for (i = 0; i < difficulty; i++) {
+    for (i = 0; i < difficulty; i++) {                  
         let peg = document.createElement('peg');
         peg.setAttribute('class', 'mystery');
         peg.textContent = '?';
         masterEls.appendChild(peg);
     }
-
     if (difficulty === 5) flayerBoard();
 }
 //<---init functions
@@ -244,7 +246,7 @@ function handleSubmitGuess() {
 
 function handlePegRemover() {
     if (!!gameStatus) return displayWarning('Press New Game!');
-    if (currentGuess.length === 0) return displayWarning('Empty Row!'); //need change this
+    if (currentGuess.length === 0) return displayWarning('Empty Row!'); 
     currentGuess.pop();
     playRandomAudio().play();
     render();
@@ -255,7 +257,7 @@ function handlePegSelector(evt) {
     if (evt.target.classList.value === 'selector') {
         if (!!gameStatus) return displayWarning('Press New Game!');
         if (currentGuess.length >= difficulty) {
-            displayWarning('Full Row!'); // need to replace later
+            displayWarning('Full Row!'); 
             return;
         }
         currentGuess.push(evt.target.id);
@@ -265,8 +267,7 @@ function handlePegSelector(evt) {
 }
 
 function handleNewGame() {
-    if (!(!!gameStatus)) { }//ask if sure
-    init(difficulty);//
+    init(difficulty);
 }
 
 function handleGreeting(evt) {
@@ -281,7 +282,7 @@ function handleGreeting(evt) {
             document.querySelector('.greeting-rules').setAttribute('id', 'flayer-rules');
         }
         greetingContainer.innerText = "";
-        greetingContainer.innerText = "You must guess the code. The code is 4 unique pegs. You have 10 guesses. Black clue pegs indicate a peg is the correct color and in the correct position. A white peg indicates only a correct color. The orientation of the black and white pegs does not indicate which colored peg is correct.";
+        greetingContainer.innerText = "You must guess the code. The code is " + difficulty + " unique pegs. You have 10 guesses. Black clue pegs indicate a peg is the correct color and in the correct position. A white peg indicates only a correct color. The orientation of the black and white pegs does not indicate which colored peg is correct.";
     }
 }
 
@@ -352,6 +353,7 @@ function displayWarning(str) {
     warningEl.innerText = str;
     warningEl.style.opacity = '1';
 }
+
 function turnOffMF() {
     document.querySelector('.status').setAttribute('id', '');
     document.querySelector('.master-cell').setAttribute('id', '');
@@ -396,13 +398,15 @@ function timewarp() {
     if (difficulty !== 5)return;
     if (useTimeWarp > 0) return displayWarning('Out of casts');
     if (roundsLeft > 7) return displayWarning('Too soon to cast');
+    
     roundsLeft = roundsLeft + 2;
     useTimeWarp++
 }
 function intuition () {
     if (difficulty !== 5) return;
-//create array out of last rounds pegs
-    // let singleMatch = false;
+    if (roundsLeft > 8) return displayWarning('Too Soon to cast')
+    if (useIntuition > 0) return displayWarning('Out of Casts');
+
     let found = false;
     for( i = 0 ; i < (difficulty-1) ; i++){
         if (found) return;
@@ -415,18 +419,9 @@ function intuition () {
             found = true;
         }
     }
-    // guessEls[roundsLeft+1].childNodes.forEach(function(el , idx) {
-    //     if (idx === 0) return;
-    //     if(el.id === masterCode[idx] && guessEls[roundsLeft+1].childNodes[idx+1].id !== masterCode[idx+1]){
-    //         el.style.border = '2px solid yellow';
-    //         guessEls[roundsLeft+1].childNodes[idx+1].style.border = '2px solid yellow';
-    //     }
-    // })
+    useIntuition++;
 }
 
-function highlight () {
-
-}
 function arrayEquals(a, b) {
     if (a.length !== b.length) return false;
     let c = true;
@@ -438,6 +433,7 @@ function arrayEquals(a, b) {
     })
     return c;
 }
+
 function playRandomAudio() {
     return audioArray[Math.floor(Math.random() * audioArray.length)];
 }
