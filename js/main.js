@@ -22,6 +22,20 @@ const intuitionCost = [
     'green',
 ];
 
+const audio2 = new Audio('./audio/audio2.wav');
+const audio3 = new Audio('./audio/audio3.wav');
+const audio4 = new Audio('./audio/audio4.wav');
+const audio1 = new Audio('./audio/audio1.wav');
+const lvl1audio = new Audio('./audio/level1.wav');
+const lvl2audio = new Audio('./audio/level2.wav');
+
+const audioArray = [
+    audio1,
+    audio2,
+    audio3,
+    audio4,
+]
+
 /*----- app's state (variables) -----*/
 let gameStatus; //game in session = null, victory = 'W', loser = 'L'
 let roundsLeft; //9 roundsLeft means 10 guesses total
@@ -55,8 +69,16 @@ document.querySelector('#mindflayer').addEventListener('click', handleMindflayer
 init(4);
 
 function init(int) {
+    lvl1audio.pause();
+    lvl1audio.currentTime = 0;
+    lvl2audio.pause();
+    lvl2audio.currentTime = 0;
     gameStatus = null;
     difficulty = int;
+    if(difficulty === 5) {
+        lvl2audio.play();
+        lvl2audio.loop = true;
+    }
     roundsLeft = 9;
     roundChanged = false;
     useTimeWarp = 0;
@@ -228,12 +250,12 @@ function handleSubmitGuess() {
 function handlePegRemover() {
     if (!!gameStatus) return displayWarning('Press New Game!');
     if (currentGuess.length === 0) return displayWarning('Empty Row!'); //need change this
-    currentGuess.pop();
+    currentGuess.pop(); 
+    playRandomAudio().play();
     render();
 }
 
 function handlePegSelector(evt) {
-
     //Gaurd
     if (evt.target.classList.value === 'selector') {
         if (!!gameStatus) return displayWarning('Press New Game!');
@@ -242,6 +264,7 @@ function handlePegSelector(evt) {
             return;
         }
         currentGuess.push(evt.target.id);
+        playRandomAudio().play();
         render();
     }
 }
@@ -252,9 +275,6 @@ function handleNewGame() {
 }
 
 function handleGreeting(evt) {
-    // console.log(evt.target.childNodes);
-    // const spanNode; =  rulesEl.childNodes[1].cloneNode(true);
-    // console.log(spanNode);
     if (greetingContainer.classList.value === 'greeting-rules') {
         greetingContainer.classList.value = 'greeting';
         greetingContainer.innerText = "MasterMind!";
@@ -268,7 +288,6 @@ function handleGreeting(evt) {
         greetingContainer.innerText = "";
         greetingContainer.innerText = "You must guess the code. The code is 4 unique pegs. You have 10 guesses. Black clue pegs indicate a peg is the correct color and in the correct position. A white peg indicates only a correct color. The orientation of the black and white pegs does not indicate which colored peg is correct.";
     }
-    // check which class it is and either add rules text or remove rules text   
 }
 
 function flayerBoard() {
@@ -294,9 +313,7 @@ function handleMindflayer() {
     let bg = 'background:radial-gradient(circle at 50% 50%,  #807b4fb5 2%, #aa9883c3 50%, #562d42f2 100%)';
     if (difficulty === 5) return turnOffMF();
     backEl.style.opacity = '1'; //brings up mindflayer image
-    //change background color/styling for everything, body/message boxs/selector boxes/buttons
-
-    //begin pegboard transformation
+   
     guessEls.forEach(function (el) {
         el.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
     })
@@ -312,23 +329,12 @@ function handleMindflayer() {
             childEl.setAttribute('id', 'emptyFlex');
         })
     })
-
-
-
     document.getElementById('empty').style.backgroundImage = 'url("https://cdn.shopify.com/s/files/1/1432/8830/products/mindflayertrophyhead-shopify_1024x1024.jpg?v=1656489737")';
-
-
-
     //begin message box transformation
     document.querySelector('.status').setAttribute('id', 'status-flayer');
-    // document.querySelector('.greeting > div').setAttribute('id', 'title');
-    // document.querySelector('.greeting').setAttribute('id','greeting-flayer');
-    // document.querySelector('.greeting > a').setAttribute('id','flayer-click');
     document.querySelector('.master-cell').setAttribute('id', 'flayer-code-cell');
     document.querySelector('side').setAttribute('id', 'flayer-side');
     document.querySelector('.new-game').setAttribute('id', 'flayer-new-game');
-
-
     document.querySelector('#mindflayer').innerText = 'Run Away!';
 }
 //<---handler functions
@@ -407,9 +413,9 @@ function arrayEquals(a, b) {
         if ( el !== b[idx]) {
             c = false;
         }
-        console.log(el);
-        console.log(b[idx]);
-        console.log(c);
     }) 
     return c;
+}
+function playRandomAudio () {
+    return audioArray[Math.floor(Math.random() * audioArray.length)];
 }

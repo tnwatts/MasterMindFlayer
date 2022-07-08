@@ -104,17 +104,16 @@ side {
 }
 
 .greeting {
-    
+    background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #85614a 2%, rgba(228, 207, 113, 0.408) 50%, #4f1a3eb1 100%);
+    text-shadow: 0.2vmin 0.2vmin 0.2vmin rgb(140, 172, 161);
+    color: #2f0c1a;
+    font-weight: 900;
     position: absolute;
-    
-    background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #30947B 2%, rgba(196, 210, 119, 0.648) 50%, #5c3245db 100%);
-    
     text-align: center;
     font-size: 2.3vmin;
     box-shadow: 1vmin 1vmin 1vmin #230c0cd5;
     border-radius: 25%;
     padding: 3vmin;
-    
 }
 
 #title {
@@ -148,9 +147,9 @@ side {
     padding: 3vmin;
 }
 #flayer-rules {
-    background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #85614a 2%, rgba(196, 210, 119, 0.648) 50%, #7e3f6adb 100%);
+    background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #85614a 2%, rgba(228, 207, 113, 0.408) 50%, #4f1a3eb1 100%);
     text-shadow: 0.2vmin 0.2vmin 0.2vmin rgb(140, 172, 161);
-    color: #641c39dc;
+    color: #2f0c1a;
 }
 .status {
     transition: .5s;
@@ -175,6 +174,7 @@ side {
 }
 
 #mindflayer {
+    z-index: 5;
     position: absolute;
     font-family: 'BioRhyme', serif;
     opacity: 0;
@@ -203,8 +203,8 @@ side {
 }
 
 #status-flayer {
-    color: #14c7f4;
-    text-shadow: 0.3vmin 0.1vmin 0.2vmin rgba(7, 34, 25, 0.857);
+    color: #004e4fca;
+    text-shadow: 0.3vmin 0.1vmin 0.2vmin rgba(154, 207, 189, 0.857);
     background: radial-gradient(circle at 50% 50%,  #807b4fb5 2%, #aa9883c3 50%, #562d42f2 100%);
 }
 
@@ -330,14 +330,15 @@ peg {
     height: 90%;
 }
 rule {
-    color: #511b10;
+    background: radial-gradient(circle at 50% 50%, #6e6e48 1px, #85614a 2%, rgba(228, 207, 113, 0.408) 50%, #4f1a3eb1 100%);
+    text-shadow: 0.2vmin 0.2vmin 0.2vmin rgb(140, 172, 161);
+    color: #2f0c1a;
     font-weight: 900;
     font-size: 2vmin;
     font-family: 'BioRhyme', serif;
-    text-shadow: 0.1vmin 0.1vmin 0.1vmin rgb(255, 255, 255);
+    text-shadow: 0.2vmin 0.1vmin 0.2vmin rgba(159, 135, 217, 0.975);
     position: absolute;
     margin-top: -50vmin;
-    background: radial-gradient(circle at 50% 50%, #323e72 1px, #4a8085 2%, rgba(196, 210, 119, 0.648) 50%, #663f7edb 100%);
     right: 64%;
     text-align: center;
     box-shadow: 1vmin 1vmin 1vmin #230c0cd5;
@@ -492,7 +493,7 @@ weirdly in firefox and needs its own settings*/
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 2fr 1fr 1fr 2fr 1fr;
     border : 2px solid black;
-    width: 41vmin;
+    width: 39vmin;
     height: 32vmin;
     background: linear-gradient(0.24turn, #67273af0, #4d518fd4, #c2ab92db); 
     padding: 1vmin 1vmin 2vmin 1vmin;
