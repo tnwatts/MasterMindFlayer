@@ -24,7 +24,7 @@ lvl 3
 
 # Getting Started
 Defeat the Master Mind for a chance to battle the Mind Flayer!
-[Click to Play Connect Four!](https://tnwatts.github.io/MasterMindFlayer/)
+[Click to Play Master Mind Flayer!](https://tnwatts.github.io/MasterMindFlayer/)
 
 # Next Steps
 
